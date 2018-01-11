@@ -71,7 +71,7 @@
 			</div>
 			
 			
-			<div style="margin-top:10%;">
+			<div style="margin-top:5%;">
 				<center><h4>If you want to join us <a onclick="">SignUp</a></h4></center>
 			</div>
 			
