@@ -13,6 +13,7 @@
 		var pwd = document.getElementById("UserPassword").value;
 		var repwd = document.getElementById("UserReEnterPassword").value;
 		var flag=angular.equals(pwd, repwd);
+		
 		if(!flag){
 			document.getElementById("rePassword").innerHTML="<div class='form-group has-error has-feedback'>"+
 			"<label class='control-label' for='inputError'>"+"Passwords must match"+"</label>"+
