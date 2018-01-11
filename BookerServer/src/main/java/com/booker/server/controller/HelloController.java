@@ -14,8 +14,10 @@ public class HelloController {
         return "hello";
     }
     
-    @Requestmapping("/main")
+    @RequestMapping("/main")
     public String main(){
     	return "main";
     }
+    
+    
 }
