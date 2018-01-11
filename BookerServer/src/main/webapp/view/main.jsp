@@ -35,10 +35,10 @@
     		document.getElementById("top").innerHTML=
     			"<form class='form-inline'style='margin-top:10px;'>"+"<div class='form-group'>"+"<label for='InputID' style='margin-right:10px;'>"+
     			"<span class='glyphicon glyphicon-user' aria-hidden='true'>"+"</span>"+"</label>"
-    			+"<input type='text' style='margin-right:10px;' class='form-control' id='InputId' placeholder='Insert Your ID'>"+
+    			+"<input type='text' style='margin-right:10px;' class='form-control' id='InputId' name='InputId' placeholder='Insert Your ID'>"+
     			"</div>"+"<div class='form-group'>"+"<label for='InputPassword' style='margin-right:10px;'>"+
     			"<span class='glyphicon glyphicon-lock' aria-hidden='true'>"+"</span>"+"</label>"+
-    			"<input type='password' class='form-control' id='inputPassword' placeholder='PassWord' style='margin-right:10px;'>"+
+    			"<input type='password' class='form-control' id='inputPassword' name='inputPassword' placeholder='PassWord' style='margin-right:10px;'>"+
     			"</div>"+"<button type='button' class='btn btn-primary' style='margin-right:10px;' onclick='';>Login</button>"+"</form>";  		
     			  
     	}

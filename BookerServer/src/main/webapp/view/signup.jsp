@@ -37,15 +37,15 @@
 		<form>
 		  <div class="form-group">
 		    <label for="InputName">Name</label>
-		    <input type="text" class="form-control" id="UserName" placeholder="Insert your name">
+		    <input type="text" class="form-control" id="UserName" name="userName" placeholder="Insert your name">
 		  </div>
 		  <div class="form-group">
 		    <label for="Email">E-mail</label>
-		    <input type="email" class="form-control" id="UserEmail" placeholder="Insert your email">
+		    <input type="email" class="form-control" id="UserEmail" name="userId" placeholder="Insert your email">
 		  </div>
 		  <div class="form-group">
 		    <label for="InputPassword">Password</label>
-		    <input type="password" class="form-control" id="UserPassword" placeholder="Password">
+		    <input type="password" class="form-control" id="UserPassword" name="userPassword"  placeholder="Password">
 		  </div>
 		 <div class="form-group" id="rePassword">
 		    <label for="Re-enterpassword">Re-enter password</label>
