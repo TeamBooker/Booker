@@ -19,5 +19,14 @@ public class HelloController {
     	return "main";
     }
     
+    @RequestMapping("/signup")
+    public String signUp() {
+    	return "signup";
+    }
+    
+    @RequestMapping("/search")
+    public String search() {
+    	return "search";
+    }
     
 }
