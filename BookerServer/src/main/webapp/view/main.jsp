@@ -21,6 +21,7 @@
 	
 	.top{
 		height: 8%;
+		width: 100%;
 		
 	}
 	
@@ -33,27 +34,61 @@
 		height: 12%;
 	}
 	
+	.circle {
+	  float: right;                           
+	  width: 40px;                              
+	  height: 40px;                            
+	  background: #B5B2FF;                           
+	  border-radius: 50%;                     
+	}  
+	
+
+	
+	
 	</style>
     <title>TeamBook</title>
     <script type="text/javascript">
     
-    	function display_login(){
-    		
-    		document.getElementById("top").innerHTML=
-    			"<form class='form-inline'style='margin-top:10px;'>"+"<div class='form-group'>"+"<label for='InputID' style='margin-right:10px;'>"+
-    			"<span class='glyphicon glyphicon-user' aria-hidden='true'>"+"</span>"+"</label>"
-    			+"<input type='text' style='margin-right:10px;' class='form-control' id='InputId' name='InputId' placeholder='Insert Your ID'>"+
-    			"</div>"+"<div class='form-group'>"+"<label for='InputPassword' style='margin-right:10px;'>"+
-    			"<span class='glyphicon glyphicon-lock' aria-hidden='true'>"+"</span>"+"</label>"+
-    			"<input type='password' class='form-control' id='inputPassword' name='inputPassword' placeholder='PassWord' style='margin-right:10px;'>"+
-    			"</div>"+"<button type='button' class='btn btn-primary' style='margin-right:10px;' onclick='';>Login</button>"+"</form>";  		
-    			  
-    	}
     	
     	
     	
     	function AjaxController($scope, $http)
 		{
+    		
+	  		
+			$scope.login = function(){
+				var InputId = document.getElementById("InputId").value;
+				var InputPassword = document.getElementById("InputPassword").value;
+			
+	 			$http({
+	    			method: 'POST', //방식
+	    			url: '/login', /* 통신할 URL */
+	    			params: {
+	    				InputId : InputId,
+	 					InPutPassword : InputPassword
+	    			}, /* 파라메터로 보낼 데이터 */
+	    			headers: {'Content-Type': 'application/json; charset=utf-8'} //헤더
+	    		})
+	    		.success(function(data, status, headers, config) {
+	    			if( data ) {
+	    				/* 성공적으로 결과 데이터가 넘어 왔을 때 처리 */
+        				$("#top").html(data); 
+
+	    			}
+	    			else {
+	    				/* 통신한 URL에서 데이터가 넘어오지 않았을 때 처리 */
+	    				alert("fail");
+	    			}
+	    		})
+	    		.error(function(data, status, headers, config) {
+	    			/* 서버와의 연결이 정상적이지 않을 때 처리 */
+	    			alert("error");
+	    			console.log(status);
+	    		}); 
+
+    			};
+    			
+    		
 
 
     		$scope.search = function(){
@@ -82,9 +117,15 @@
         			console.log(status);
         		});
     			
-    		}
+    		};
   
 		}
+		
+		function display_login(){
+		  document.getElementById("login").style.display="none";
+		  document.getElementById("loginForm").style.display="block";
+    	}
+    	
     	
     
     </script>
@@ -95,9 +136,9 @@
 <body>
     <div class=container-fluid style="height:100%; padding-left: 0px;padding-right: 0px;">
     	<div class="top" id="top" style="float: right;">
-    		<button type="button"  onclick="display_login()" class="btn btn-primary" style="margin: 10px;">Login</button>
+    	    <jsp:include page="top.jsp"></jsp:include>
     	</div>
-    	
+ 
     	<div class="middle" style="clear: right;" id="middle">
     	
     		<div>
