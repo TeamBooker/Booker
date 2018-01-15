@@ -3,38 +3,36 @@
 <head>
 <meta charset="UTF-8">
 <title>signUp</title>
-
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+	<script src="http://code.angularjs.org/angular-1.0.0rc10.min.js"></script>
 	<script type="text/javascript">
 
 	function checkPwd(){
 		var pwd = document.getElementById("UserPassword").value;
 		var repwd = document.getElementById("UserReEnterPassword").value;
 		var flag=angular.equals(pwd, repwd);
-		
 		if(!flag){
-			document.getElementById("rePassword_label").innerHTML="<div class='form-group has-error has-feedback' style='margin-bottom:0;'>"+
+			document.getElementById("rePassword").innerHTML="<div class='form-group has-error has-feedback'>"+
 			"<label class='control-label' for='inputError'>"+"Passwords must match"+"</label>"+
+			"<input type='password' class='form-control' id='UserReEnterPassword' aria-describedby='inputError2Status'>"+
 			"<span class='glyphicon glyphicon-remove form-control-feedback' aria-hidden='true'>"+
 			"</span>"+"<span id='inputError2Status' class='sr-only'>"+"(error)"+"</span>"+
 			"</div>";
-			document.getElementById("submit").disabled = true;
-			
-			
 		}else{
-			document.getElementById("rePassword_label").innerHTML="<div class='form-group has-success has-feedback' style='margin-bottom:0;'>"+
+			document.getElementById("rePassword").innerHTML="<div class='form-group has-success has-feedback'>"+
 			"<label class='control-label' for='inputSuccess'>"+"Re-enter Passwords"+"</label>"+
+			"<input type='password' class='form-control' id='UserReEnterPassword' aria-describedby='inputSuccess2Status' value='"+pwd+"'>"+
 			"<span class='glyphicon glyphicon-ok form-control-feedback' aria-hidden='true'>"+
 			"</span>"+"<span id='inputSuccess2Status' class='sr-only'>"+"(success)"+"</span>"+
 			"</div>";
-			
-			document.getElementById("submit").removeAttribute("disabled");
-	
 		}
 	}
 	</script>
 </head>
 <body>
-<div>
+<div style="margin-left: 30%;margin-right: 30%;">
 	<div class="navbar navbar-default center-block" style="padding: 25px;">
 		<form>
 		  <div class="form-group">
@@ -49,18 +47,16 @@
 		    <label for="InputPassword">Password</label>
 		    <input type="password" class="form-control" id="UserPassword" name="userPassword"  placeholder="Password">
 		  </div>
-		 <div class="form-group">
-		 	<div id="rePassword_label">
+		 <div class="form-group" id="rePassword">
 		    <label for="Re-enterpassword">Re-enter password</label>
-		    </div>
-		    <input type="password" class="form-control" id="UserReEnterPassword" placeholder="Re-enter password" onkeyup="checkPwd()">
-		    
-		    <div id="repassword_span"></div>
+		    <input type="password" class="form-control" id="UserReEnterPassword" placeholder="Re-enter password">
 		  </div>
 		
-		  <button type="button" onclick="" id="submit" class="btn btn-warning center-block" disabled="disabled">Create Account</button>
+		  <button type="button" onclick="checkPwd()" class="btn btn-warning center-block">Create Account</button>
 		</form>
 	</div>
 </div>
+
+
 </body>
 </html>
