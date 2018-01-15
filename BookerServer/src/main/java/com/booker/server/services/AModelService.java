@@ -7,4 +7,6 @@ import com.booker.server.model.AModel;
  */
 public interface AModelService {
     AModel findOne(Integer integer);
+
+    void save(AModel aModel);
 }

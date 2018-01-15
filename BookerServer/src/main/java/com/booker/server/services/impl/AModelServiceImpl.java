@@ -18,4 +18,10 @@ public class AModelServiceImpl implements AModelService {
     public AModel findOne(Integer integer) {
         return aModelRepository.findOne(integer);
     }
+
+    @Override
+    public void save(AModel aModel) {
+        aModelRepository.save(aModel);
+    }
+
 }

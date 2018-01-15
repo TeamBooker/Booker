@@ -1,9 +1,6 @@
 package com.booker.server.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 
 /**
@@ -13,9 +10,19 @@ import java.io.Serializable;
 @Table(name = "B_AMODEL")
 public class AModel implements Serializable{
     @Id
-    @GeneratedValue
-    private String id;
+    @SequenceGenerator(name="amodel_generator", sequenceName = "B_AMODEL_ID_SEQ")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "amodel_generator")
+    private Integer id;
+
     private String field;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getField() {
         return field;
@@ -25,11 +32,4 @@ public class AModel implements Serializable{
         this.field = field;
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 }
