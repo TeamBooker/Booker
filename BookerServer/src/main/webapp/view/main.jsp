@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html ng-app>
+<html lang="kr" ng-app>
 <head>
     <meta charset="UTF-8">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-	<link href="../../resources/public/css/ihover.css" rel="stylesheet">
+	<link href="/css/ihover.css" rel="stylesheet">
 	<style type="text/css">
 	body, html{
 		height: 100%;
@@ -56,7 +56,7 @@
     	<div class="middle" style="clear: right;">
     	
     		<div>
-    			<img class="center-block" src="../../resources/public/img/TB_title.png" style="width: 30%; padding-bottom: 5%; padding-top: 5%;">
+    			<img class="center-block" src="/img/TB_title.png" style="width: 30%; padding-bottom: 5%; padding-top: 5%;">
     		</div>
 
 	    	<div class="row center-block" style="width:40%;">
@@ -83,7 +83,7 @@
     	
 	    	<table style="width: 100%; height: 100%; padding: 0;">
 	    		<tr>
-	    			<td style="width: 20%;"><img src="../../resources/public/img/TB_title.png" style="width: 50%;"></td>
+	    			<td style="width: 20%;"><img src="/img/TB_title.png" style="width: 50%;"></td>
 	    			<td style="width: 100%;">
 		    			
 			    		[16258] 경기도 수원시 장안구 조원로16번길 68(조원동)<br/>
