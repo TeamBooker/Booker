@@ -53,10 +53,10 @@
     	
     	
     	
-    	function AjaxController($scope, $http)
+    	function AjaxController($scope, $http, $compile)
 		{
     		
-	  		
+	  		/* 로그인 */
 			$scope.login = function(){
 				var InputId = document.getElementById("InputId").value;
 				var InputPassword = document.getElementById("InputPassword").value;
@@ -73,8 +73,7 @@
 	    		.success(function(data, status, headers, config) {
 	    			if( data ) {
 	    				/* 성공적으로 결과 데이터가 넘어 왔을 때 처리 */
-        				$("#top").html(data); 
-
+        				$("#top").html($compile(data)($scope)); 
 	    			}
 	    			else {
 	    				/* 통신한 URL에서 데이터가 넘어오지 않았을 때 처리 */
@@ -91,7 +90,7 @@
     			
     		
 
-
+			/* 검색 */
     		$scope.search = function(){
     	  		/* AJAX 통신 처리 */
     	  		var dataObject = document.getElementById("search_text").value;
@@ -105,7 +104,7 @@
         		.success(function(data, status, headers, config) {
         			if( data ) {
         				/* 성공적으로 결과 데이터가 넘어 왔을 때 처리 */
-        				$("#middle").html(data); 
+        				$("#middle").html($compile(data)($scope)); 
         			}
         			else {
         				/* 통신한 URL에서 데이터가 넘어오지 않았을 때 처리 */
@@ -118,16 +117,137 @@
         			console.log(status);
         		});
     			
+    		}; 
+    		
+    		$scope.test = function(){
+    			alert('성공');
     		};
-  
+    		
+    		
+    		/* 예약 */
+    		$scope.reservation = function(){
+
+
+    				$http({
+    				method: 'POST', //방식
+    				url: '/reservation', /* 통신할 URL */
+    				params: {
+    				}, /* 파라메터로 보낼 데이터 */
+    				headers: {'Content-Type': 'application/json; charset=utf-8'} //헤더
+    			})
+    			.success(function(data, status, headers, config) {
+    				if( data ) {
+    					/* 성공적으로 결과 데이터가 넘어 왔을 때 처리 */
+    					$("#middle").html($compile(data)($scope)); 
+
+    				}
+    				else {
+    					/* 통신한 URL에서 데이터가 넘어오지 않았을 때 처리 */
+    					alert("fail");
+    				}
+    			})
+    			.error(function(data, status, headers, config) {
+    				/* 서버와의 연결이 정상적이지 않을 때 처리 */
+    				alert("error");
+    				console.log(status);
+    			}); 
+
+    			};   		
+    			
+    			/* 열람 */
+    			$scope.read = function(){
+    				
+    					$http({
+    					method: 'POST', //방식
+    					url: '/read', /* 통신할 URL */
+    					params: {
+    					}, /* 파라메터로 보낼 데이터 */
+    					headers: {'Content-Type': 'application/json; charset=utf-8'} //헤더
+    				})
+    				.success(function(data, status, headers, config) {
+    					if( data ) {
+    						/* 성공적으로 결과 데이터가 넘어 왔을 때 처리 */
+    						$("#middle").html($compile(data)($scope)); 
+
+    					}
+    					else {
+    						/* 통신한 URL에서 데이터가 넘어오지 않았을 때 처리 */
+    						alert("fail");
+    					}
+    				})
+    				.error(function(data, status, headers, config) {
+    					/* 서버와의 연결이 정상적이지 않을 때 처리 */
+    					alert("error");
+    					console.log(status);
+    				}); 
+
+    				};    			
+
+    				/* 대출 */
+    				$scope.rental = function(){
+    					
+    		 			$http({
+    		    			method: 'POST', //방식
+    		    			url: '/rental', /* 통신할 URL */
+    		    			params: {
+    		    				
+    		    			}, /* 파라메터로 보낼 데이터 */
+    		    			headers: {'Content-Type': 'application/json; charset=utf-8'} //헤더
+    		    		})
+    		    		.success(function(data, status, headers, config) {
+    		    			if( data ) {
+    		    				/* 성공적으로 결과 데이터가 넘어 왔을 때 처리 */
+    		    				$("#middle").html($compile(data)($scope)); 
+
+    		    			}
+    		    			else {
+    		    				/* 통신한 URL에서 데이터가 넘어오지 않았을 때 처리 */
+    		    				alert("fail");
+    		    			}
+    		    		})
+    		    		.error(function(data, status, headers, config) {
+    		    			/* 서버와의 연결이 정상적이지 않을 때 처리 */
+    		    			alert("error");
+    		    			console.log(status);
+    		    		}); 
+
+    		 			
+    					};   
+    					
+    					/* 위시 */
+    					$scope.wish = function(){
+    					
+    			 			$http({
+    			    			method: 'POST', //방식
+    			    			url: '/wish', /* 통신할 URL */
+    			    			params: {
+    			    			}, /* 파라메터로 보낼 데이터 */
+    			    			headers: {'Content-Type': 'application/json; charset=utf-8'} //헤더
+    			    		})
+    			    		.success(function(data, status, headers, config) {
+    			    			if( data ) {
+    			    				/* 성공적으로 결과 데이터가 넘어 왔을 때 처리 */
+    		        				$("#middle").html($compile(data)($scope)); 
+
+    			    			}
+    			    			else {
+    			    				/* 통신한 URL에서 데이터가 넘어오지 않았을 때 처리 */
+    			    				alert("fail");
+    			    			}
+    			    		})
+    			    		.error(function(data, status, headers, config) {
+    			    			/* 서버와의 연결이 정상적이지 않을 때 처리 */
+    			    			alert("error");
+    			    			console.log(status);
+    			    		}); 
+
+    		    			};
 		}
 		
 		function display_login(){
 		  document.getElementById("login").style.display="none";
 		  document.getElementById("loginForm").style.display="block";
-    	}
-    	
-    	
+    	}	
     
     </script>
     
