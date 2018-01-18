@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html ng-app ng-controller="AdminController">
 <head>
@@ -12,7 +13,7 @@
 	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script> 
 	<style type="text/css">
 	</style>
-	<title>Booker admin</title>
+	<title>Booker admin page</title>
 	<script type="text/javascript">
 		function AdminController($scope, $http)
 		{
