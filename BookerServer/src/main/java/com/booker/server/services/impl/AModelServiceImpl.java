@@ -4,12 +4,12 @@ import com.booker.server.model.AModel;
 import com.booker.server.repository.AModelRepository;
 import com.booker.server.services.AModelService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 /**
  * Created by Cheechyo on 2018. 1. 11..
  */
-@Component
+@Service
 public class AModelServiceImpl implements AModelService {
     @Autowired
     AModelRepository aModelRepository;
