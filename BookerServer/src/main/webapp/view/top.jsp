@@ -1,10 +1,24 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-			<c:if test="${empty sessionScope.UserId }">
+<!DOCTYPE html>
+<html ng-app>
+<head>
+</head>
+<body>
+	<c:if test="${empty sessionScope.UserId }">
 	    		<div id="login" style="float: right;">
 	    			<button type="button"  onclick="display_login()" class="btn btn-primary" style="margin: 10px;">Login</button>
 	    		</div>
-	    		<div id="loginForm" style="display: none; float: right;">
+	    		
+	    		<c:if test="${Login_error == 1 }">
+	    				<script type="text/javascript">alert("You are not subscribed. Please join us!");</script>
+
+	    		</c:if>
+	    		<c:if test="${Password_error == 1 }">
+	    				<script type="text/javascript">alert("The password was wrong.");</script>
+	    		</c:if>
+	    			
+	    		
+	    		<div id="loginForm" style="display: none; float: right;">	    		
 	    		    			<form class="form-inline"style="margin-top:10px;">
 					    			<div class="form-group">
 						    			<label for="InputID" style="margin-right:10px;">
@@ -22,10 +36,17 @@
 					    			</div>
 				    				<button type="button" class="btn btn-primary" style="margin-right:10px;" ng-click="login()">Login</button>
 				    			</form>  	
+				    			
 	    		</div>
-    		</c:if>
-		    <c:if test="${not empty sessionScope.UserId}">
-		    	<div style="width: 100%;height:100%; padding : 10px; float: right;">
-		    		<div class="circle" style=" padding-top: 5px; padding-right:5px;"><font color="White" style="font-size: 20px; margin-left: 15px;">${Name_tag}</font></div>
+    </c:if>
+    <c:if test="${not empty sessionScope.UserId }">
+		    	<div id="userForm" style="width: 100%;height:100%;margin-top: 10px;">
+		    		<div class="circle" style=" padding-top: 5px; margin-right:5px;"><font color="White" style="font-size: 20px; margin-left: 13px;">${sessionScope.Name_tag}</font></div>
+		    		<img src="/img/Cart.ico" ng-click="reservation()" style="margin-right: 10px; width: 40px; float: right;">
+		    		<img src="/img/Check.ico" ng-click="read()" style="margin-right: 10px; width: 40px; float: right;">
+		    		<img src="/img/Contacts.ico" ng-click="rental()" style="margin-right: 10px; width: 40px; float: right;">
+		    		<img src="/img/Heart.ico" ng-click="wish()" style="margin-right:10px; width: 40px; float: right;">
 		    	</div>
-		    </c:if>
+	</c:if>
+</body>
+</html>
