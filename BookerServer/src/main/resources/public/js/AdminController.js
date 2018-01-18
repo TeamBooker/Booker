@@ -1,0 +1,3 @@
+function AdminController($scope, $http) {
+	
+}
