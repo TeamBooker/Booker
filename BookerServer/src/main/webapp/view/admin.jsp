@@ -13,6 +13,7 @@
 	<link href="../css/ihover.css" rel="stylesheet">
 	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script> 
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.4.2/js/adminlte.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.min.js"></script>
 
 	<style type="text/css">
 		.middle{
@@ -39,7 +40,6 @@
 			<!-- Tab panes -->
 			<div class="tab-content">
 				<div role="tabpanel" class="tab-pane active" id="catalog">
-					catalog
 					<table class="table">
 						<thead>
 							<tr>
@@ -60,6 +60,22 @@
 							</tr>
 						</tbody>
 					</table>
+					<nav class="text-center" aria-label="Page navigation">
+						<ul class="pagination">
+							<li ng-click="previousCatalog();">
+								<a href="#" aria-label="Previous">
+									<span aria-hidden="true">&laquo;</span>
+								</a>
+							</li>
+							<li ng-repeat-start="i in _.range(1, data.size + 1)" ng-click="loadCatalog({{i}})" data-page="{{i}}"><a href="#" >{{i}}</a></li>
+							<li ng-repeat-end class="divider"></li>
+							<li ng-click="nextCatalog();">
+								<a href="#" aria-label="Next">
+									<span aria-hidden="true">&raquo;</span>
+								</a>
+							</li>
+						</ul>
+					</nav>
 				</div>
 				<div role="tabpanel" class="tab-pane" id="member">
 					member
