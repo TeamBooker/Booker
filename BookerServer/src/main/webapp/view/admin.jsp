@@ -15,9 +15,13 @@
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.4.2/js/adminlte.min.js"></script>
 
 	<style type="text/css">
+		.middle{
+			width:960px;
+			margin: auto;
+		}
 	</style>
 	<title>Booker admin page</title>
-	<script type="text/javascript" src="js/class/AdminController.js"></script>
+	<script type="text/javascript" src="js/AdminController.js"></script>
 </head>
 <body>
 	<div class=container-fluid style="height:100%; padding-left: 0px;padding-right: 0px;">
@@ -25,7 +29,42 @@
 			<jsp:include page="top.jsp"></jsp:include>
 		</div>
 		<div class="middle" style="clear: right;" id="middle">
-			
+			<div>
+				<!-- Nav tabs -->
+				<ul class="nav nav-tabs" role="tablist">
+					<li role="presentation" class="active"><a href="#catalog" aria-controls="catalog" role="tab" data-toggle="tab">도서관리</a></li>
+					<li role="presentation"><a href="#member" aria-controls="member" role="tab" data-toggle="tab">회원관리</a></li>
+				</ul>
+			</div>
+			<!-- Tab panes -->
+			<div class="tab-content">
+				<div role="tabpanel" class="tab-pane active" id="catalog">
+					catalog
+					<table class="table">
+						<thead>
+							<tr>
+								<th>bookId</th>
+								<th>bookTitle</th>
+								<th>bookWriter</th>
+								<th>bookPublisher</th>
+								<th>bookDate</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="document in data.content">
+								<td>{{document.bookId}}</td>
+								<td>{{document.bookTitle}}</td>
+								<td>{{document.bookWriter}}</td>
+								<td>{{document.bookPublisher}}</td>
+								<td>{{document.bookDate}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div role="tabpanel" class="tab-pane" id="member">
+					member
+				</div>
+			</div>
 		</div>
 		<hr />
 		<div class="bottom">
