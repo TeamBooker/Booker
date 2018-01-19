@@ -67,7 +67,7 @@
 									<span aria-hidden="true">&laquo;</span>
 								</a>
 							</li>
-							<li ng-repeat-start="i in _.range(1, data.size + 1)" ng-click="loadCatalog({{i}})" data-page="{{i}}"><a href="#" >{{i}}</a></li>
+							<li ng-repeat-start="idx in _.range(0, data.size) track by $index" ng-click="pageCatalog(idx)"><a>{{idx+1}}</a></li>
 							<li ng-repeat-end class="divider"></li>
 							<li ng-click="nextCatalog();">
 								<a href="#" aria-label="Next">
