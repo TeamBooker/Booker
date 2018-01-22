@@ -1,5 +1,6 @@
 package com.booker.server.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -92,5 +93,23 @@ public class TB_MemberController {
 		System.out.println("위시 실행");
 		
 		return "wishList";
+	}
+	
+	
+	@RequestMapping(value = "/logout")
+	public String logout(Model model, HttpServletRequest request, HttpSession session) 
+	{
+		System.out.println("로그아웃");
+		//getSession(false) 현재 세션이 존재하면 기존 세션 리턴, 없으면 null값 리턴
+		session = request.getSession(false);
+		
+		//현재 세션이 존재하면
+		if(session != null)
+		{
+			//세션 소멸
+			session.invalidate();
+		}
+		
+		return "redirect:/main";
 	}
 }

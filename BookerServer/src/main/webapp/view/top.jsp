@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html ng-app>
 <head>
+	<link href="../css/ihover.css" rel="stylesheet">
 </head>
 <body>
 	<c:if test="${empty sessionScope.UserId }">
@@ -42,11 +43,65 @@
     </c:if>
     <c:if test="${not empty sessionScope.UserId }">
 		    	<div id="userForm" style="width: 100%;height:100%;margin-top: 10px;">
-		    		<div class="circle" style=" padding-top: 5px; margin-right:5px;"><font color="White" style="font-size: 20px; margin-left: 13px;">${sessionScope.Name_tag}</font></div>
-		    		<img src="/img/Cart.ico" ng-click="reservation()" style="margin-right: 10px; width: 40px; float: right;">
-		    		<img src="/img/Check.ico" ng-click="read()" style="margin-right: 10px; width: 40px; float: right;">
-		    		<img src="/img/Contacts.ico" ng-click="rental()" style="margin-right: 10px; width: 40px; float: right;">
-		    		<img src="/img/Heart.ico" ng-click="wish()" style="margin-right:10px; width: 40px; float: right;">
+		    		
+		    		
+		    		<div style="padding-left: 10px;">
+		    			<div class="ih-item circle effect5" style="width: 40px; height: 40px; float: left;"><a href="#">
+					        <div style="width: 40px; height: 40px;"><div class="circle" style=" padding-top: 5px;"><font color="White" style="font-size: 20px; margin-left: 13px;">${sessionScope.Name_tag}</font></div></div>
+					        <div class="info">
+					          <div class="info-back">
+					            <h3 style="color: gray;">My Profile</h3>
+					          </div>
+					        </div></a>
+					     </div>
+					 </div>
+					 
+		    			<div class="ih-item circle effect5" style="margin-left:10px; float: left; width: 40px; height: 40px;"><a href="#">
+					        <div style="width: 40px; height: 40px;"><img src="/img/Cart.ico" ng-click="reservation()" style=" width: 40px; float: right;"></div>
+					        <div class="info">
+					          <div class="info-back">
+					            <h3 style="color: gray;">reservation book</h3>
+					          </div>
+					        </div></a>
+					     </div>
+		    		
+		    			<div class="ih-item circle effect5" style="margin-left:10px; float: left; width: 40px; height: 40px;"><a href="#">
+					        <div style="width: 40px; height: 40px;"><img src="/img/Check.ico" ng-click="read()" style=" width: 40px; float: right;"></div>
+					        <div class="info">
+					          <div class="info-back">
+					            <h3 style="color: gray;">reading book</h3>
+					          </div>
+					        </div></a>
+					     </div>
+		    		
+		    		<div class="ih-item circle effect5" style="margin-left:10px; float: left; width: 40px; height: 40px;"><a href="#">
+				        <div style="width: 40px; height: 40px;"><img src="/img/Contacts.ico" ng-click="rental()" style=" width: 40px; float: right;"></div>
+				        <div class="info">
+				          <div class="info-back">
+				            <h3 style="color: gray;">rental book</h3>
+				          </div>
+				        </div></a>
+				     </div>
+		    		
+		    		
+		    		
+		    		<div class="ih-item circle effect5" style="margin-left:10px; float: left; width: 40px; height: 40px; "><a href="#">
+				        <div style="width: 40px; height: 40px;"><img src="/img/Heart.ico" ng-click="wish()" style=" width: 40px; float: right;"></div>
+				        <div class="info">
+				          <div class="info-back">
+				            <h3 style="color: gray;">My Study</h3>
+				          </div>
+				        </div></a>
+				     </div>
+				     
+				    	<div class="ih-item circle effect5" style="margin-right:10px; float: right; width: 40px; height: 40px; "><a href="#">
+				        <div style="width: 40px; height: 40px;"><img src="/img/logout.ico" ng-click="logout()" style=" width: 40px;"></div>
+				        <div class="info" style="float: right;">
+				          <div class="info-back" style="float: right;">
+				            <font style="color:white; float: right; ">Log Out</font>
+				          </div>
+				        </div></a>
+				     </div>
 		    	</div>
 	</c:if>
 </body>

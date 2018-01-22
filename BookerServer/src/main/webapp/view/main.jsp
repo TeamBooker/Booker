@@ -28,6 +28,7 @@
 	
 	.middle{
 		height: 80%;
+		min-height: 80%;
 	}
 	
 	.bottom{
@@ -48,210 +49,9 @@
 	
 	</style>
     <title>TeamBook</title>
-    <script type="text/javascript">
-    
-    	
-    	
-    	
-    	function AjaxController($scope, $http, $compile)
-		{
-    		
-	  		/* 로그인 */
-			$scope.login = function(){
-				var InputId = document.getElementById("InputId").value;
-				var InputPassword = document.getElementById("InputPassword").value;
-			
-	 			$http({
-	    			method: 'POST', //방식
-	    			url: '/login', /* 통신할 URL */
-	    			params: {
-	    				InputId : InputId,
-	 					InPutPassword : InputPassword
-	    			}, /* 파라메터로 보낼 데이터 */
-	    			headers: {'Content-Type': 'application/json; charset=utf-8'} //헤더
-	    		})
-	    		.success(function(data, status, headers, config) {
-	    			if( data ) {
-	    				/* 성공적으로 결과 데이터가 넘어 왔을 때 처리 */
-        				$("#top").html($compile(data)($scope)); 
-	    			}
-	    			else {
-	    				/* 통신한 URL에서 데이터가 넘어오지 않았을 때 처리 */
-	    				alert("fail");
-	    			}
-	    		})
-	    		.error(function(data, status, headers, config) {
-	    			/* 서버와의 연결이 정상적이지 않을 때 처리 */
-	    			alert("error");
-	    			console.log(status);
-	    		}); 
-
-    			};
-    			
-    		
-
-			/* 검색 */
-    		$scope.search = function(){
-    	  		/* AJAX 통신 처리 */
-    	  		var dataObject = document.getElementById("search_text").value;
-    	  		
-        		$http({
-        			method: 'POST', //방식
-        			url: '/search', /* 통신할 URL */
-        			data: dataObject, /* 파라메터로 보낼 데이터 */
-        			headers: {'Content-Type': 'application/json; charset=utf-8'} //헤더
-        		})
-        		.success(function(data, status, headers, config) {
-        			if( data ) {
-        				/* 성공적으로 결과 데이터가 넘어 왔을 때 처리 */
-        				$("#middle").html($compile(data)($scope)); 
-        			}
-        			else {
-        				/* 통신한 URL에서 데이터가 넘어오지 않았을 때 처리 */
-        				alert("fail");
-        			}
-        		})
-        		.error(function(data, status, headers, config) {
-        			/* 서버와의 연결이 정상적이지 않을 때 처리 */
-        			alert("error");
-        			console.log(status);
-        		});
-    			
-    		}; 
-    		
-    		$scope.test = function(){
-    			alert('성공');
-    		};
-    		
-    		
-    		/* 예약 */
-    		$scope.reservation = function(){
-
-
-    				$http({
-    				method: 'POST', //방식
-    				url: '/reservation', /* 통신할 URL */
-    				params: {
-    				}, /* 파라메터로 보낼 데이터 */
-    				headers: {'Content-Type': 'application/json; charset=utf-8'} //헤더
-    			})
-    			.success(function(data, status, headers, config) {
-    				if( data ) {
-    					/* 성공적으로 결과 데이터가 넘어 왔을 때 처리 */
-    					$("#middle").html($compile(data)($scope)); 
-
-    				}
-    				else {
-    					/* 통신한 URL에서 데이터가 넘어오지 않았을 때 처리 */
-    					alert("fail");
-    				}
-    			})
-    			.error(function(data, status, headers, config) {
-    				/* 서버와의 연결이 정상적이지 않을 때 처리 */
-    				alert("error");
-    				console.log(status);
-    			}); 
-
-    			};   		
-    			
-    			/* 열람 */
-    			$scope.read = function(){
-    				
-    					$http({
-    					method: 'POST', //방식
-    					url: '/read', /* 통신할 URL */
-    					params: {
-    					}, /* 파라메터로 보낼 데이터 */
-    					headers: {'Content-Type': 'application/json; charset=utf-8'} //헤더
-    				})
-    				.success(function(data, status, headers, config) {
-    					if( data ) {
-    						/* 성공적으로 결과 데이터가 넘어 왔을 때 처리 */
-    						$("#middle").html($compile(data)($scope)); 
-
-    					}
-    					else {
-    						/* 통신한 URL에서 데이터가 넘어오지 않았을 때 처리 */
-    						alert("fail");
-    					}
-    				})
-    				.error(function(data, status, headers, config) {
-    					/* 서버와의 연결이 정상적이지 않을 때 처리 */
-    					alert("error");
-    					console.log(status);
-    				}); 
-
-    				};    			
-
-    				/* 대출 */
-    				$scope.rental = function(){
-    					
-    		 			$http({
-    		    			method: 'POST', //방식
-    		    			url: '/rental', /* 통신할 URL */
-    		    			params: {
-    		    				
-    		    			}, /* 파라메터로 보낼 데이터 */
-    		    			headers: {'Content-Type': 'application/json; charset=utf-8'} //헤더
-    		    		})
-    		    		.success(function(data, status, headers, config) {
-    		    			if( data ) {
-    		    				/* 성공적으로 결과 데이터가 넘어 왔을 때 처리 */
-    		    				$("#middle").html($compile(data)($scope)); 
-
-    		    			}
-    		    			else {
-    		    				/* 통신한 URL에서 데이터가 넘어오지 않았을 때 처리 */
-    		    				alert("fail");
-    		    			}
-    		    		})
-    		    		.error(function(data, status, headers, config) {
-    		    			/* 서버와의 연결이 정상적이지 않을 때 처리 */
-    		    			alert("error");
-    		    			console.log(status);
-    		    		}); 
-
-    		 			
-    					};   
-    					
-    					/* 위시 */
-    					$scope.wish = function(){
-    					
-    			 			$http({
-    			    			method: 'POST', //방식
-    			    			url: '/wish', /* 통신할 URL */
-    			    			params: {
-    			    			}, /* 파라메터로 보낼 데이터 */
-    			    			headers: {'Content-Type': 'application/json; charset=utf-8'} //헤더
-    			    		})
-    			    		.success(function(data, status, headers, config) {
-    			    			if( data ) {
-    			    				/* 성공적으로 결과 데이터가 넘어 왔을 때 처리 */
-    		        				$("#middle").html($compile(data)($scope)); 
-
-    			    			}
-    			    			else {
-    			    				/* 통신한 URL에서 데이터가 넘어오지 않았을 때 처리 */
-    			    				alert("fail");
-    			    			}
-    			    		})
-    			    		.error(function(data, status, headers, config) {
-    			    			/* 서버와의 연결이 정상적이지 않을 때 처리 */
-    			    			alert("error");
-    			    			console.log(status);
-    			    		}); 
-
-    		    			};
-		}
-		
-		function display_login(){
-		  document.getElementById("login").style.display="none";
-		  document.getElementById("loginForm").style.display="block";
-    	}	
-    
-    </script>
     
     
+	<script type="text/javascript" src="js/MemberController.js"></script>
 		
 </head>
 <body>
@@ -260,7 +60,7 @@
     	    <jsp:include page="top.jsp"></jsp:include>
     	</div>
  
-    	<div class="middle" style="clear: right;" id="middle">
+    	<div class="middle" style="clear: right;" id="middle" >
     	
     		<div>
     			<img class="center-block" src="../img/TB_title.png" style="width: 30%; padding-bottom: 5%; padding-top: 5%;">
@@ -306,12 +106,12 @@
     	
 	    	<table style="width: 100%; height: 100%; padding: 0;">
 	    		<tr>
-	    			<td style="width: 20%;"><img src="../img/TB_title.png" style="width: 50%;"></td>
+	    			<td style="width: 20%;"><img src="../img/TB_title.png" style="width: 50%;" onclick="javascript:window.location = '/main';"></td>
 	    			<td style="width: 100%;">
 	    			
 	    			
 	    			
-		    			
+		    			한글
 			    		[16258] Suwon, Gyeonggi-do, Chowon-dong 16,<br/>
 						Tell : 031-789-4561 / 1990-3300 Contact Us : 031-123-4567<br/>
 						Copyright by Jeju Library Division All Right Reserved.<br/>

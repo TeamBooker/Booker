@@ -7,9 +7,9 @@
 <title>search</title>
 </head>
 <body>
-<div id="list">
+<div id="list" style=" padding-top: 100px;">
 
-<table border="1px">
+<table class="table table-hover">
 <thead>
 	<tr>
 		<td>Book</td>
@@ -35,7 +35,7 @@
 	<c:otherwise>
 	
 	    <tr>
-	       <center><td colspan="4">No results were found for your search.</td></center>
+	       <td colspan="4"><center>No results were found for your search.</center></td>
 	    </tr>
 	 
 	</c:otherwise>

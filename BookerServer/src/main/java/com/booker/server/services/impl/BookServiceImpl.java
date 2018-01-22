@@ -20,4 +20,6 @@ public class BookServiceImpl implements BookService{
     public Page<Book> findAll(Pageable pageable) {
         return bookRepository.findAll(pageable);
     }
+
+	
 }

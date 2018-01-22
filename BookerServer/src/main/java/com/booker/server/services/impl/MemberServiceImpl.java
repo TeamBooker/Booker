@@ -26,7 +26,6 @@ public class MemberServiceImpl implements MemberService {
 		membermodel.setUsername(username);
 		membermodel.setPassword(password);
 		
-		System.out.println(membermodel.getPassword()+" "+membermodel.getUsername());
 		return memberRepository.save(membermodel);
 	}
 	

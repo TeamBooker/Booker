@@ -7,13 +7,13 @@
 <title>search</title>
 </head>
 <body>
-<div id="list">
+<div id="list" style=" padding-top: 100px;">
 
 <table class="table table-hover">
 <thead>
 	<tr>
 		<td>Book</td>
-		<td>Reservation Date</td>
+		<td>Wish Date</td>
 		<td>State</td>
 		<td>library</td>
 	</tr>

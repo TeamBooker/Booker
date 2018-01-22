@@ -10,4 +10,5 @@ import org.springframework.data.domain.Pageable;
 
 public interface BookService {
     Page<Book> findAll(Pageable pageable);
+
 }

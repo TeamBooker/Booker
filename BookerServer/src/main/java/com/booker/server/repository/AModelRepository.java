@@ -10,4 +10,6 @@ public interface AModelRepository extends CrudRepository<AModel, Integer> {
     AModel save(AModel entity);
 
     AModel findOne(Integer id);
+    
+    
 }
