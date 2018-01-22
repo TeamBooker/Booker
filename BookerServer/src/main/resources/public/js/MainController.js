@@ -1,4 +1,14 @@
-var app = angular.module('booker',[]);
+var app = angular.module('booker',['ngRoute']);
+app.config(function($routeProvider) {
+	$routeProvider
+	// .when('/', {controller:'MainController', templateUrl:'/'})
+	.when('/myProfile', {controller:'MyProfileController', templateUrl:'/myProfile'})
+	.otherwise({redirectTo : '/'})
+});
+
+app.controller('MyProfileController', function(){
+	console.log('MyProfileController');
+});
 app.controller('MainController', function($scope, $http, $compile){
 	var rate=0;
 	$scope.enterdLogin = function($event){
@@ -344,16 +354,6 @@ app.controller('MainController', function($scope, $http, $compile){
 		}); 
 
 	};
-
-	$scope.myProfile = function(){
-		$http({url: '/myProfile', method: 'POST'})
-		.success(function(data, status, headers, config) {
-			if (!data)
-				throw "no data"; /* 통신한 URL에서 데이터가 넘어오지 않았을 때 처리 */
-			$("#middle").html($compile(data)($scope)); 
-		})
-		.error(console.error); 
-	}
 });
 
 function display_login(){
