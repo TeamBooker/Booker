@@ -1,10 +1,9 @@
 package com.booker.server.repository;
 
-import org.springframework.data.repository.CrudRepository;
-
 import com.booker.server.model.MemberModel;
+import org.springframework.data.repository.PagingAndSortingRepository;
 
-public interface MemberRepository extends CrudRepository<MemberModel, Integer> {
+public interface MemberRepository extends PagingAndSortingRepository<MemberModel, Integer> {
 	
 	MemberModel findOneByUsername(String username);
 

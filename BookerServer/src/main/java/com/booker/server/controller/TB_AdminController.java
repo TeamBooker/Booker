@@ -1,7 +1,9 @@
 package com.booker.server.controller;
 
 import com.booker.server.model.Book;
+import com.booker.server.model.MemberModel;
 import com.booker.server.services.BookService;
+import com.booker.server.services.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -19,6 +21,9 @@ public class TB_AdminController {
     @Autowired
     BookService bookService;
 
+    @Autowired
+    MemberService memberService;
+
     @GetMapping("")
     public void admin(){
     }
@@ -27,5 +32,11 @@ public class TB_AdminController {
     @ResponseBody
     public Page<Book> catalog(Pageable pageable){
         return bookService.findAll(pageable);
+    }
+
+    @GetMapping("/members")
+    @ResponseBody
+    public Page<MemberModel> member(Pageable pageable){
+        return memberService.findAll(pageable);
     }
 }
