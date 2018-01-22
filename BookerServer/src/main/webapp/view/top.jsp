@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html ng-app>
+<html>
 <head>
 	<link href="../css/ihover.css" rel="stylesheet">
 </head>
@@ -17,7 +17,7 @@
 			<script type="text/javascript">alert("The password was wrong.");</script>
 		</c:if>
 		<div id="loginForm" style="display: none; float: right;">
-			<form class="form-inline"style="margin-top:10px;">
+			<form class="form-inline" style="margin-top:10px;" ng-keypress="enterdLogin($event)">
 				<div class="form-group">
 					<label for="InputID" style="margin-right:10px;">
 						<span class="glyphicon glyphicon-user" aria-hidden="true">

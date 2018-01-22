@@ -1,13 +1,11 @@
-/**
- * 
- */
-var rate=0;
-
-
-
-function AjaxController($scope, $http, $compile)
-{
-
+var app = angular.module('booker',[]);
+app.controller('MainController', function($scope, $http, $compile){
+	var rate=0;
+	$scope.enterdLogin = function($event){
+		console.log($event);
+		if ($event.which == 13)
+			$scope.login();
+	}
 	/* 로그인 */
 	$scope.login = function(){
 		var InputId = document.getElementById("InputId").value;
@@ -346,11 +344,17 @@ function AjaxController($scope, $http, $compile)
 		}); 
 
 	};
-	
-	$scope.myProfile = function(){
 
+	$scope.myProfile = function(){
+		$http({url: '/myProfile', method: 'POST'})
+		.success(function(data, status, headers, config) {
+			if (!data)
+				throw "no data"; /* 통신한 URL에서 데이터가 넘어오지 않았을 때 처리 */
+			$("#middle").html($compile(data)($scope)); 
+		})
+		.error(console.error); 
 	}
-}
+});
 
 function display_login(){
 	document.getElementById("login").style.display="none";
