@@ -19,18 +19,10 @@
 		<div id="loginForm" style="display: none; float: right;">
 			<form class="form-inline" style="margin-top:10px;" ng-keypress="enterdLogin($event)">
 				<div class="form-group">
-					<label for="InputID" style="margin-right:10px;">
-						<span class="glyphicon glyphicon-user" aria-hidden="true">
-						</span>
-					</label>
-					<input type="text" style="margin-right:10px;" class="form-control" id="InputId" name="InputId" placeholder="Insert Your ID">
-				</div>
-				<div class="form-group">
-					<label for="InputPassword" style="margin-right:10px;">
-						<span class="glyphicon glyphicon-lock" aria-hidden="true">
-						</span>
-					</label>
-					<input type="password" class="form-control" id="InputPassword" name="inputPassword" placeholder="PassWord" style="margin-right:10px;">
+					<label for="inputId" style="margin-right:10px;"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></label>
+					<input type="text" style="margin-right:10px;" class="form-control" ng-model="inputId" placeholder="Insert your ID">
+					<label for="inputPassword" style="margin-right:10px;"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span></label>
+					<input type="password" class="form-control" ng-model="inputPassword" placeholder="Password" style="margin-right:10px;">
 				</div>
 				<button type="button" class="btn btn-primary" style="margin-right:10px;" ng-click="login()">Login</button>
 			</form>
@@ -51,26 +43,26 @@
 				</div>
 			</div>
 			<div class="ih-item circle effect5" style="margin-left:10px; float: left; width: 40px; height: 40px;">
-				<a href="#">
-					<div style="width: 40px; height: 40px;"><img src="/img/Cart.ico" ng-click="reservation()" style=" width: 40px; float: right;"></div>
+				<a href="#/reservation">
+					<div style="width: 40px; height: 40px;"><img src="/img/Cart.ico" style=" width: 40px; float: right;"></div>
 					<div class="info"><div class="info-back"><h3 style="color: gray;">reservation book</h3></div></div>
 				</a>
 			</div>
 			<div class="ih-item circle effect5" style="margin-left:10px; float: left; width: 40px; height: 40px;">
-				<a href="#">
-					<div style="width: 40px; height: 40px;"><img src="/img/Check.ico" ng-click="read()" style=" width: 40px; float: right;"></div>
+				<a href="#/read">
+					<div style="width: 40px; height: 40px;"><img src="/img/Check.ico" style=" width: 40px; float: right;"></div>
 					<div class="info"><div class="info-back"><h3 style="color: gray;">reading book</h3></div></div>
 				</a>
 			</div>
 			<div class="ih-item circle effect5" style="margin-left:10px; float: left; width: 40px; height: 40px;">
-				<a href="#">
-					<div style="width: 40px; height: 40px;"><img src="/img/Contacts.ico" ng-click="rental()" style=" width: 40px; float: right;"></div>
+				<a href="#/rental">
+					<div style="width: 40px; height: 40px;"><img src="/img/Contacts.ico" style=" width: 40px; float: right;"></div>
 					<div class="info"><div class="info-back"><h3 style="color: gray;">rental book</h3></div></div>
 				</a>
 			</div>
 			<div class="ih-item circle effect5" style="margin-left:10px; float: left; width: 40px; height: 40px; ">
-				<a href="#">
-					<div style="width: 40px; height: 40px;"><img src="/img/Heart.ico" ng-click="wish()" style=" width: 40px; float: right;"></div>
+				<a href="#/wish">
+					<div style="width: 40px; height: 40px;"><img src="/img/Heart.ico" style=" width: 40px; float: right;"></div>
 					<div class="info"><div class="info-back"><h3 style="color: gray;">My Study</h3></div></div>
 				</a>
 			</div>

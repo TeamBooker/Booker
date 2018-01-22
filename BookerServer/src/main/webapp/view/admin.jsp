@@ -2,19 +2,8 @@
 <!DOCTYPE html>
 <html ng-app ng-controller="AdminController">
 <head>
-	<meta charset="UTF-8">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" type="text/css">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css" type="text/css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.4.2/css/AdminLTE.min.css" type="text/css">
-
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-	
-	<link href="../css/ihover.css" rel="stylesheet">
-	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script> 
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.4.2/js/adminlte.min.js"></script>
+	<jsp:include page="commonHead.jsp"/>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.min.js"></script>
-
 	<style type="text/css">
 		.middle{
 			width:960px;
@@ -22,7 +11,7 @@
 		}
 	</style>
 	<title>Booker admin page</title>
-	<script type="text/javascript" src="js/AdminController.js"></script>
+	<script type="text/javascript" src="/js/AdminController.js"></script>
 </head>
 <body>
 	<div class=container-fluid style="height:100%; padding-left: 0px;padding-right: 0px;">

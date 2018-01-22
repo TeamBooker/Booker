@@ -1,8 +1,7 @@
 package com.booker.server.controller;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
+import com.booker.server.model.MemberModel;
+import com.booker.server.services.impl.MemberServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.booker.server.model.MemberModel;
-import com.booker.server.services.impl.MemberServiceImpl;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @Controller
 public class TB_MemberController {
@@ -21,22 +20,22 @@ public class TB_MemberController {
 	
 	
 	@RequestMapping(value="/login", method = RequestMethod.POST)
-	public String login(Model model,HttpSession session,String InputId,String InPutPassword){
+	public String login(Model model,HttpSession session,String inputId,String inputPassword){
 		
-		MemberModel member = memberService.findOneByUsername(InputId);
+		MemberModel member = memberService.findOneByUsername(inputId);
 		
 		/*로그인 오류 검사*/
 		if(member==null) {
 			model.addAttribute("Login_error", "1");
 			return "top";
-		}else if(!member.getPassword().equals(InPutPassword)) {
+		}else if(!member.getPassword().equals(inputPassword)) {
 			model.addAttribute("Password_error","1");
 			return "top";
 		}
 		
 		/*로그인 성공*/
-		session.setAttribute("Name_tag", InputId.toUpperCase().charAt(0));
-		session.setAttribute("UserId", InputId);
+		session.setAttribute("Name_tag", inputId.toUpperCase().charAt(0));
+		session.setAttribute("UserId", inputId);
 		return "top";
 		}
 	
@@ -68,27 +67,27 @@ public class TB_MemberController {
 		return 0;
 	}
 	
-	@RequestMapping(value="/read", method= RequestMethod.POST)
+	@RequestMapping(value="/read")
 	public String read(Model model) {
 		System.out.println("열람 실행");
 		return "readList";
 	}
 
-	@RequestMapping(value="/reservation", method= RequestMethod.POST)
+	@RequestMapping(value="/reservation")
 	public String reservation(Model model) {
 		System.out.println("예약 실행");
 	
 		return "reservationList";
 	}
 	
-	@RequestMapping(value="/rental", method= RequestMethod.POST)
+	@RequestMapping(value="/rental")
 	public String retal(Model model) {
 		System.out.println("대출 실행");
 		
 		return "rentalList";
 	}
 	
-	@RequestMapping(value="/wish", method= RequestMethod.POST)
+	@RequestMapping(value="/wish")
 	public String wish(Model model) {
 		System.out.println("위시 실행");
 		

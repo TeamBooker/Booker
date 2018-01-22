@@ -28,8 +28,9 @@
 		}  
 	</style>
 	<title>TeamBook</title>
+	<script type="text/javascript" src="js/MyProfileController.js"></script>
 	<script type="text/javascript" src="js/SearchController.js"></script>
-	<script type="text/javascript" src="js/MainController.js"></script>
+	<script type="text/javascript" src="js/TopController.js"></script>
 	<script type="text/javascript" src="js/app.js"></script>
 </head>
 <body ng-app="booker">
@@ -52,7 +53,6 @@
 			</table>
 		</div>
 	</div>
-
 	<!-- Modal -->
 	<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 		<div class="modal-dialog" role="document">

@@ -1,6 +1,7 @@
 function AdminController($scope, $http) {
     $scope._ = _;
     var baseUrl = '/admin';
+    console.log($http);
     var loadCatalog = function(pageNumber){
         pageNumber = pageNumber ? pageNumber : 0;
         return $http({
