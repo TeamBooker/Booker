@@ -67,7 +67,7 @@
 									<span aria-hidden="true">&laquo;</span>
 								</a>
 							</li>
-							<li ng-repeat-start="idx in _.range(0, catalog.totalPages)" ng-click="pageCatalog(idx)"><a href="#">{{idx+1}}</a></li>
+							<li ng-repeat-start="idx in _.range(_.max([0, catalog.number - 4]), _.min([catalog.totalPages, catalog.number + 4]))" ng-click="pageCatalog(idx)"><a href="#">{{idx+1}}</a></li>
 							<li ng-repeat-end class="divider"></li>
 							<li ng-click="nextCatalog();">
 								<a href="#" aria-label="Next">
@@ -99,7 +99,7 @@
 									<span aria-hidden="true">&laquo;</span>
 								</a>
 							</li>
-							<li ng-repeat-start="idx in _.range(0, members.totalPages)" ng-click="pageMembers(idx)"><a href="#">{{idx+1}}</a></li>
+							<li ng-repeat-start="idx in _.range(_.max([0, members.number - 4]), _.min([members.totalPages, members.number + 4]))" ng-click="pageMembers(idx)"><a href="#">{{idx+1}}</a></li>
 							<li ng-repeat-end class="divider"></li>
 							<li ng-click="nextMembers();">
 								<a href="#" aria-label="Next">
