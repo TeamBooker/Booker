@@ -51,7 +51,7 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr ng-repeat="document in data.content">
+							<tr ng-repeat="document in catalog.content">
 								<td>{{document.bookId}}</td>
 								<td>{{document.bookTitle}}</td>
 								<td>{{document.bookWriter}}</td>
@@ -67,7 +67,7 @@
 									<span aria-hidden="true">&laquo;</span>
 								</a>
 							</li>
-							<li ng-repeat-start="idx in _.range(0, data.size) track by $index" ng-click="pageCatalog(idx)"><a>{{idx+1}}</a></li>
+							<li ng-repeat-start="idx in _.range(_.max([0, catalog.number - 4]), _.min([catalog.totalPages, catalog.number + 4]))" ng-click="pageCatalog(idx)"><a href="#">{{idx+1}}</a></li>
 							<li ng-repeat-end class="divider"></li>
 							<li ng-click="nextCatalog();">
 								<a href="#" aria-label="Next">
@@ -78,7 +78,36 @@
 					</nav>
 				</div>
 				<div role="tabpanel" class="tab-pane" id="member">
-					member
+					<table class="table">
+						<thead>
+							<tr>
+								<th>id</th>
+								<th>username</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="member in members.content">
+								<td>{{member.id}}</td>
+								<td>{{member.username}}</td>
+							</tr>
+						</tbody>
+					</table>
+					<nav class="text-center" aria-label="Page navigation">
+						<ul class="pagination">
+							<li ng-click="previousMembers();">
+								<a href="#" aria-label="Previous">
+									<span aria-hidden="true">&laquo;</span>
+								</a>
+							</li>
+							<li ng-repeat-start="idx in _.range(_.max([0, members.number - 4]), _.min([members.totalPages, members.number + 4]))" ng-click="pageMembers(idx)"><a href="#">{{idx+1}}</a></li>
+							<li ng-repeat-end class="divider"></li>
+							<li ng-click="nextMembers();">
+								<a href="#" aria-label="Next">
+									<span aria-hidden="true">&raquo;</span>
+								</a>
+							</li>
+						</ul>
+					</nav>
 				</div>
 			</div>
 		</div>

@@ -1,6 +1,8 @@
 package com.booker.server.services.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.booker.server.model.MemberModel;
@@ -28,7 +30,11 @@ public class MemberServiceImpl implements MemberService {
 		
 		return memberRepository.save(membermodel);
 	}
-	
+
+	@Override
+	public Page<MemberModel> findAll(Pageable pageable) {
+		return memberRepository.findAll(pageable);
+	}
 
 
 }
