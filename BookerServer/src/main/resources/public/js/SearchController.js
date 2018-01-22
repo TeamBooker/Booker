@@ -27,5 +27,23 @@ function SearchController($scope, $http, $compile){
 			console.log(status);
 		});
 
-	};	
+	};
+	/*상세페이지*/
+	$scope.bookDetail = function(book){
+		var bookId;
+		$http({
+			method: 'GET',
+			url: '/bookDetail',
+			params: {bookId : book},
+			headers: {'Content-Type': 'application/json; charset=utf-8'}
+		}).success(function(data, status, headers, config) {
+			if(!data) {
+				alert("fail");
+				return;
+			}
+			$("#middle").html($compile(data)($scope)); 
+		})
+		.error(console.error);
+	};
+
 }

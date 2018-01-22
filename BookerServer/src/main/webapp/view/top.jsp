@@ -17,7 +17,7 @@
 			<script type="text/javascript">alert("The password was wrong.");</script>
 		</c:if>
 		<div id="loginForm" style="display: none; float: right;">
-			<form class="form-inline" style="margin-top:10px;" ng-keypress="enterdLogin($event)">
+			<form class="form-inline" style="margin-top:10px;" ng-keypress="loginKeyPressed($event)">
 				<div class="form-group">
 					<label for="inputId" style="margin-right:10px;"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></label>
 					<input type="text" style="margin-right:10px;" class="form-control" ng-model="inputId" placeholder="Insert your ID">

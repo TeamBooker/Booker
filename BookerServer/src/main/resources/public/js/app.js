@@ -2,6 +2,7 @@ var app = angular.module('booker',['ngRoute']);
 app.config(function($routeProvider, $locationProvider, $httpProvider) {
 	$routeProvider
 		.when('/', {controller:'SearchController', templateUrl:'/mainSearch'})
+		.when('/search', {controller:'SearchController', templateUrl:'/mainSearch'})
 		.when('/myProfile', {controller:'MyProfileController', templateUrl:'/myProfile'})
 		.when('/reservation', {controller:'MyProfileController', templateUrl:'/reservation'})
 		.when('/read', {controller:'MyProfileController', templateUrl:'/read'})
