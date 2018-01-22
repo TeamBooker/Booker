@@ -40,7 +40,7 @@
 		<div id="userForm" style="width: 100%;height:100%;margin-top: 10px;">
 			<div style="padding-left: 10px;">
 				<div class="ih-item circle effect5" style="width: 40px; height: 40px; float: left;">
-					<a href="#">
+					<a href="#/myProfile">
 						<div style="width: 40px; height: 40px;">
 							<div class="circle" style=" padding-top: 5px;" ng-click="myProfile()">
 								<font color="White" style="font-size: 20px; margin-left: 13px;">${sessionScope.Name_tag}</font>

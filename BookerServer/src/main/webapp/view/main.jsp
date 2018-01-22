@@ -28,15 +28,16 @@
 		}  
 	</style>
 	<title>TeamBook</title>
+	<script type="text/javascript" src="js/SearchController.js"></script>
 	<script type="text/javascript" src="js/MainController.js"></script>
+	<script type="text/javascript" src="js/app.js"></script>
 </head>
-<body ng-app="booker" ng-controller="MainController">
+<body ng-app="booker">
 	<div class=container-fluid style="height:100%; padding-left: 0px;padding-right: 0px;">
-		<div class="top" id="top" style="float: right;">
+		<div ng-controller="TopController" class="top" id="top" style="float: right;">
 			<jsp:include page="top.jsp"></jsp:include>
 		</div>
-		<div class="middle" style="clear: right;" id="middle" >
-			<jsp:include page="main_middle.jsp"/>
+		<div class="middle" style="clear: right;" id="middle" ng-view>
 		</div>
 		<div class="bottom">
 			<table style="width: 100%; height: 100%; padding: 0;">
@@ -49,6 +50,23 @@
 					</td>
 				</tr>
 			</table>
+		</div>
+	</div>
+
+	<!-- Modal -->
+	<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLongTitle">Sign UP</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<jsp:include page="signup.jsp"></jsp:include>
+				</div>
+			</div>
 		</div>
 	</div>
 </body>

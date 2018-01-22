@@ -149,8 +149,8 @@
 	}
 	</script>
 </head>
-<body ng-app ng-controller="SignController">
-<div>
+<body>
+<div ng-controller="SignController">
 	<div class="navbar navbar-default center-block" style="padding: 25px;">
 		<form>
 		  <div class="form-group">
