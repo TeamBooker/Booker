@@ -9,12 +9,16 @@ import com.booker.server.model.MemberModel;
 import com.booker.server.repository.MemberRepository;
 import com.booker.server.services.MemberService;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @Service
 public class MemberServiceImpl implements MemberService {
 
 	@Autowired
-	MemberRepository memberRepository;
-	
+	private MemberRepository memberRepository;
+
+
 	@Override
 	public MemberModel findOneByUsername(String username) {
 		// TODO Auto-generated method stub
@@ -37,4 +41,23 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 
+    public Map<String, Object> getProfile(String username) {
+		final MemberModel aMemberModel = memberRepository.findOneByUsername(username);
+		final Map<String, Integer> profile;
+		if (aMemberModel == null){
+			final HashMap<String, Integer> dummyProfile = new HashMap<String, Integer>() {{
+				this.put("reservation", -1);
+				this.put("reading", -1);
+				this.put("rental", -1);
+				this.put("wish", -1);
+			}};
+			profile = dummyProfile;
+		} else {
+			profile = memberRepository.getProfile(aMemberModel);
+		}
+		return new HashMap<String, Object>(){{
+            this.put("name", username);
+			this.put("numberOf", profile);
+        }};
+    }
 }

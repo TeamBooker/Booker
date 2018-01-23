@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.HashMap;
 import java.util.Map;
 
 @Controller
@@ -99,19 +98,11 @@ public class TB_MemberController {
 
 	@GetMapping("/currentUserProfile")
     @ResponseBody
-	public Map<String, Object> currentUser (){
-		return new HashMap<String, Object>(){{
-			this.put("name", "kwj9211@gmail.com");
-			this.put("numberOf", new HashMap<String, Number>(){{
-				this.put("reservation", 1);
-				this.put("reading", 2);
-				this.put("rental", 3);
-				this.put("wish", 4);
-			}});
-		}};
+	public Map<String, Object> currentUser (HttpSession session){
+		return memberService.getProfile((String) session.getAttribute("UserId"));
 	}
 
-	@RequestMapping(value = "/logout")
+    @RequestMapping(value = "/logout")
 	public String logout(Model model, HttpServletRequest request, HttpSession session)
 	{
 		System.out.println("로그아웃");
