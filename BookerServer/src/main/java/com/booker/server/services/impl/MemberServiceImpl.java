@@ -47,7 +47,7 @@ public class MemberServiceImpl implements MemberService {
 		if (aMemberModel == null){
 			final HashMap<String, Integer> dummyProfile = new HashMap<String, Integer>() {{
 				this.put("reservation", -1);
-				this.put("reading", -1);
+				this.put("read", -1);
 				this.put("rental", -1);
 				this.put("wish", -1);
 			}};

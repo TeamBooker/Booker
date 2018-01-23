@@ -11,9 +11,9 @@ import java.io.Serializable;
  * Created by Cheechyo on 2018. 1. 24..
  */
 @Entity
-@Table(name = "B_READING")
+@Table(name = "B_READ")
 @Data
-public class Reading implements Serializable {
+public class Read implements Serializable {
     @Id
     Integer memberId;
     @Id

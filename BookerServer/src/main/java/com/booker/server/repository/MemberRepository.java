@@ -15,13 +15,13 @@ public interface MemberRepository extends PagingAndSortingRepository<MemberModel
     default Map<String, Integer> getProfile(MemberModel aMember){
         return new HashMap<String, Integer>(){{
             this.put("reservation", countReservationByMemberId(aMember.getId()));
-            this.put("reading", countReadingByMemberId(aMember.getId()));
+            this.put("read", countReadingByMemberId(aMember.getId()));
             this.put("rental", countRentalByMemberId(aMember.getId()));
             this.put("wish", 99);
         }};
     }
 
-    @Query("select count(r) from Reading r where r.memberId=:memberId")
+    @Query("select count(r) from Read r where r.memberId=:memberId")
     Integer countReadingByMemberId(@Param("memberId") Integer memberId);
 
     @Query("select count(r) from Rental r where r.memberId=:memberId")

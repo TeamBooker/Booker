@@ -19,12 +19,12 @@
 				<div class="panel-body">
 					<div class="box box-primary">
 						<div class="box-body box-profile">
-							<img class="profile-user-img img-responsive img-circle" ng-src="https://dummyimage.com/128/128/fff&text={{user.nameTag}}" alt="User profile picture"/>
+							<img class="profile-user-img img-responsive img-circle" src="https://dummyimage.com/128/128/fff&text=~" ng-src="https://dummyimage.com/128/128/fff&text={{user.nameTag}}" alt="User profile picture"/>
 							<h3 class="profile-username text-center">{{user.name}}</h3>
 							<p class="text-muted text-center">-</p>
 							<table class="table">
 								<tr><td><b>Reservation</b></td><td class="text-left">{{user.numberOf.reservation}}</td></tr>
-								<tr><td><b>Reading</b></td><td class="text-left">{{user.numberOf.reading}}</td></tr>
+								<tr><td><b>Reading</b></td><td class="text-left">{{user.numberOf.read}}</td></tr>
 								<tr><td><b>Rental</b></td><td class="text-left">{{user.numberOf.rental}}</td></tr>
 								<tr><td><b>Wish</b></td><td class="text-left">{{user.numberOf.wish}}</td></tr>
 							</table>

@@ -3,48 +3,40 @@
 <!DOCTYPE html>
 <html ng-app>
 <head>
-<meta charset="UTF-8">
-<title>search</title>
+	<meta charset="UTF-8">
+	<title>search</title>
+	<style type="text/css">
+	.container{
+		width:960px;
+		padding-top:100px;
+	}
+</style>
 </head>
 <body>
-<div id="list" style=" padding-top: 100px;">
-
-<table class="table table-hover">
-<thead>
-	<tr>
-		<td>Book</td>
-		<td>Rental Date</td>
-		<td>State</td>
-		<td>library</td>
-	</tr>
-</thead>
-<tbody>
-<c:choose>
-	<c:when test="${fn:length(booksList) > 0}">
-		<c:forEach var="booksList" items="${booksList}" varStatus="stat">
-	   		<tr>
-	   			<td></td>
-	   			<td></td>
-	   			<td></td>
-	   			<td></td>
-	   		</tr>
-	         
-		</c:forEach>
-	</c:when>
-	                
-	<c:otherwise>
-	
-	    <tr>
-	       <td colspan="4"><center>No results were found for your search.</center></td>
-	    </tr>
-	 
-	</c:otherwise>
-</c:choose>
-</tbody>
-</table>
-
-
-
-</div>
+	<div class="container">
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>Book</th>
+					<th>Rental Date</th>
+					<th>State</th>
+					<th>library</th>
+				</tr>
+			</thead>
+			<tbody ng-repeat="rental in rental.list">
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+			</tbody>
+			<tbody ng-hide="rental.list.length">
+				<tr>
+					<td colspan="4"><center>No results were found for your search.</center></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
 </body>
 </html>

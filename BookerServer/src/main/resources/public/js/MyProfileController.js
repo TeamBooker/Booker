@@ -6,7 +6,7 @@ function MyProfileController($scope, $http){
 		nameTag : '-',
 		numberOf : {
 			reservation : '-',
-			reading : '-',
+			read : '-',
 			rental : '-',
 			wish : '-'
 		}
@@ -20,28 +20,28 @@ function MyProfileController($scope, $http){
 
 	/* reservation */
 	_.merge(($scope.reservation = {}), {
-		model : {},
+		list : {},
 		load : function(){
 
 		}
 	});
 	/* read */
 	_.merge(($scope.read = {}), {
-		model : {},
+		list : {},
 		load : function(){
 
 		}
 	});
 	/* rental */
 	_.merge(($scope.rental = {}), {
-		model : {},
+		list : {},
 		load : function(){
 
 		}
 	});
 	/* wish */
 	_.merge(($scope.wish = {}), {
-		model : {},
+		list : {},
 		load : function(){
 
 		}
