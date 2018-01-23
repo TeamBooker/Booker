@@ -45,7 +45,7 @@
 			<div id="topNavigationList" ng-repeat="link in navigetionList">
 				<div class="ih-item circle effect5" style="margin-left:10px; float: left; width: 40px; height: 40px;">
 					<a href="#/{{link.href}}">
-						<div style="width: 40px; height: 40px;"><img src="{{link.ico}}" style=" width: 40px; float: right;"></div>
+						<div style="width: 40px; height: 40px;"><img ng-src="{{link.ico}}" style=" width: 40px; float: right;"></div>
 						<div class="info"><div class="info-back"><h3 style="color: gray;">{{link.title}}</h3></div></div>
 					</a>
 				</div>
