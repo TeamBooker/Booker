@@ -1,7 +1,10 @@
 package com.booker.server.controller;
 
 import com.booker.server.model.MemberModel;
-import com.booker.server.services.impl.MemberServiceImpl;
+import com.booker.server.services.BookService;
+import com.booker.server.services.MemberService;
+import com.booker.server.services.RentalService;
+import com.booker.server.services.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,13 +15,22 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Controller
 public class TB_MemberController {
 
 	@Autowired
-	MemberServiceImpl memberService;
+	MemberService memberService;
+	@Autowired
+	private RentalService rentalService;
+	@Autowired
+	private BookService bookService;
+	@Autowired
+	private ReservationService reservationService;
 
 
 	@RequestMapping(value="/login", method = RequestMethod.POST)
@@ -82,11 +94,51 @@ public class TB_MemberController {
 		return "reservationList";
 	}
 
+	@RequestMapping(value = "/reservationBook")
+	@ResponseBody
+	public String reservationBook(Integer bookId, HttpSession session) {
+		final MemberModel member = memberService.findOneByUsername((String) session.getAttribute("UserId"));
+		reservationService.reservationBook(bookId, member);
+		return "{\"message\":\"sucess\"}";
+	}
+
+	@RequestMapping(value = "/currentUser/reservationList")
+	@ResponseBody
+	public List<Map<String,Object>> currentUserReservationList(HttpSession session){
+		final MemberModel member = memberService.findOneByUsername((String) session.getAttribute("UserId"));
+		return reservationService.findAllByMemberId(member.getId()).parallelStream().map(rental -> {
+			return new HashMap<String, Object>(){{
+				this.put("regDate", rental.getRegDate());
+				this.put("book", bookService.findOneByBookId(rental.getBookId()));
+			}};
+		}).collect(Collectors.toList());
+	}
+
 	@RequestMapping(value="/rental")
 	public String retal(Model model) {
 		System.out.println("대출 실행");
 
 		return "rentalList";
+	}
+
+	@RequestMapping(value="/rentBook")
+	@ResponseBody
+	public String rentBook(Integer bookId, HttpSession session) {
+		final MemberModel member = memberService.findOneByUsername((String) session.getAttribute("UserId"));
+		rentalService.rentBook(bookId, member);
+		return "{\"message\":\"sucess\"}";
+	}
+
+	@RequestMapping(value = "/currentUser/rentalList")
+	@ResponseBody
+	public List<Map<String,Object>> currentUserRentalList(HttpSession session){
+		final MemberModel member = memberService.findOneByUsername((String) session.getAttribute("UserId"));
+		return rentalService.findAllByMemberId(member.getId()).parallelStream().map(rental -> {
+			return new HashMap<String, Object>(){{
+				this.put("regDate", rental.getRegDate());
+				this.put("book", bookService.findOneByBookId(rental.getBookId()));
+			}};
+		}).collect(Collectors.toList());
 	}
 
 	@RequestMapping(value="/wish")

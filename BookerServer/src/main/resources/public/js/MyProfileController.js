@@ -20,28 +20,36 @@ function MyProfileController($scope, $http){
 
 	/* reservation */
 	_.merge(($scope.reservation = {}), {
-		list : {},
+		list : [],
 		load : function(){
-
+			console.log("load");
+			$http.get('/currentUser/reservationList').success(function(data){
+				$scope.reservation.list = data;
+				console.log("reservation", data);
+			}).error(console.error);
 		}
 	});
 	/* read */
 	_.merge(($scope.read = {}), {
-		list : {},
+		list : [],
 		load : function(){
 
 		}
 	});
 	/* rental */
 	_.merge(($scope.rental = {}), {
-		list : {},
+		list : [],
 		load : function(){
-
+			console.log("load");
+			$http.get('/currentUser/rentalList').success(function(data){
+				$scope.rental.list = data;
+				console.log("rental", data);
+			}).error(console.error);
 		}
 	});
 	/* wish */
 	_.merge(($scope.wish = {}), {
-		list : {},
+		list : [],
 		load : function(){
 
 		}

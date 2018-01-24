@@ -1,13 +1,12 @@
 package com.booker.server.services.impl;
 
+import com.booker.server.model.MemberModel;
+import com.booker.server.repository.MemberRepository;
+import com.booker.server.services.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import com.booker.server.model.MemberModel;
-import com.booker.server.repository.MemberRepository;
-import com.booker.server.services.MemberService;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -17,7 +16,6 @@ public class MemberServiceImpl implements MemberService {
 
 	@Autowired
 	private MemberRepository memberRepository;
-
 
 	@Override
 	public MemberModel findOneByUsername(String username) {
@@ -60,4 +58,5 @@ public class MemberServiceImpl implements MemberService {
 			this.put("numberOf", profile);
         }};
     }
+
 }
