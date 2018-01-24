@@ -43,8 +43,9 @@ function SearchController($scope, $http, $compile,$routeParams){
 				return;
 			}
 			console.log(data);
-			$scope.book=data;
-			$scope.commentList=data;
+			$scope.book=data[0];
+			$scope.commentList=data[1];
+			$scope.wishNo=data[2];
 		})
 		.error(console.error);
 	};
@@ -103,6 +104,59 @@ function SearchController($scope, $http, $compile,$routeParams){
 		})
 		.error(console.error); 
 	};
+	
+	/*위시추가*/
+	$scope.wishIn = function(book,user){
+		
+		var bookId = book;
+		var userId = user;
+		$http({
+			method: 'POST', //방식
+			url: '/wishIn', /* 통신할 URL */
+			params: {
+				bookId : bookId,
+				userId : userId
+			}, /* 파라메터로 보낼 데이터 */
+			headers: {'Content-Type': 'application/json; charset=utf-8'} //헤더
+		})
+		.success(function(data, status, headers, config) {
+			if(!data){
+				alert("fail");
+				return;
+			}
+			console.log(data);
+			$scope.wishNo=data;		
+		})
+		.error(console.error); 
+	};
+	
+	/*위시삭제*/
+	$scope.wishOut = function(book,user){
+
+		var bookId = book;
+		var userId = user;
+		$http({
+			method: 'POST', //방식
+			url: '/wishOut', /* 통신할 URL */
+			params: {
+				bookId : bookId,
+				userId : userId
+			}, /* 파라메터로 보낼 데이터 */
+			headers: {'Content-Type': 'application/json; charset=utf-8'} //헤더
+		})
+		.success(function(data, status, headers, config) {
+			if(!data){
+				alert("fail");
+				return;
+			}
+			
+			console.log(data);
+			$scope.wishNo=null;		
+		})
+		.error(console.error); 
+	};
+	
+	
 	
 
 }

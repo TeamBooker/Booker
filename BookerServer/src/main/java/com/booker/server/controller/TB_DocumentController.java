@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.booker.server.model.Book;
 import com.booker.server.model.Comment;
+import com.booker.server.model.Wish;
 import com.booker.server.services.CommentService;
 import com.booker.server.services.DocumentService;
 import com.booker.server.util.ListVector;
@@ -28,19 +29,22 @@ public class TB_DocumentController {
 	@Autowired
 	CommentService commentService;
 	
+	
 	@RequestMapping("/bookDetail")
 	public void bookDetail(){System.out.println("상세화면");}
 	
 	@RequestMapping(value="/bookDetail_Content", method=RequestMethod.GET)
 	@ResponseBody
-	public ListVector bookDetail_Content(Model model, Integer bookId, Pageable pageable) {
+	public ListVector bookDetail_Content(HttpSession session, Integer bookId, Pageable pageable) {
 		Book book=documentservice.findOneByBookId(bookId);
 		Page<Comment> commentList=commentService.findByCommentBookId(pageable, bookId);
+		Wish wish = documentservice.findOneByBookIdAndUserId(bookId, session.getAttribute("UserId").toString());
+		
 		ListVector list = new ListVector(2);
 		list.add(book);
 		list.add(commentList);
-		System.out.println(book+" "+commentList);
-		System.out.println(list.get(0)+"상세보기 성공"+list.get(1));
+		list.add(wish);
+
 		return  list;
 	}
 	
@@ -68,6 +72,27 @@ public class TB_DocumentController {
 		list.add(commentNo);
 		list.add(commentList);
 		return list;
+	}
+	
+	@RequestMapping("/wishIn")
+	@ResponseBody
+	public int wishIn(Integer bookId,String userId) {
+		System.out.println("위시 들어옴 왜 오류남?"+userId+" "+bookId);
+		documentservice.insertWish(bookId, userId);
+		Wish wish = documentservice.findOneByBookIdAndUserId(bookId, userId);
+
+		return wish.getWishNo();
+		
+	}
+	
+	@RequestMapping("/wishOut")
+	@ResponseBody
+	public int wishOut(Integer bookId,String userId) {
+		Wish wish = documentservice.findOneByBookIdAndUserId(bookId, userId);
+		documentservice.deleteWish(wish.getWishNo());
+		
+		return 0;
+		
 	}
 
 }

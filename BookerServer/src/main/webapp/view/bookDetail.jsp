@@ -2,26 +2,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Insert title here</title>
-<script type="text/javascript">
-var rate=0;
-
-/*별점*/
-$(document).ready(function() {
-
-	$( ".star_rating a" ).click(function() {
-	    $(this).parent().children("a").removeClass("on");
-	    $(this).addClass("on").prevAll("a").addClass("on");
-	   
-	    rate = $(this).attr("id");
-		document.getElementById("rate").value=rate;
-	    return false;
-	});
-});
-
-</script>
-
 <style type="text/css">
+
 .middle{
 		height: auto;
 	}
@@ -97,32 +79,56 @@ table.type07 td {
     border-bottom: 1px solid #ccc;
 }
 </style>
+<script type="text/javascript">
+var rate=0;
+
+/*별점*/
+$(document).ready(function() {
+
+	$( ".star_rating a" ).click(function() {
+	    $(this).parent().children("a").removeClass("on");
+	    $(this).addClass("on").prevAll("a").addClass("on");
+	    rate = $(this).attr("id");
+		document.getElementById("rate").value=rate;
+	    return false;
+	});
+});
+</script>
 </head>
 <body>
 <div data-ng-init="bookDetail()"></div>
+<div id="wrap" style="height:500px; width:100%; margin-left:auto;margin-right:auto;">
+	
+	<div class="img" style=" float:left; width: 50%; height: 90%;">
 
-<div id="wrap" style="height:500px; width:100%; margin-left:auto;
-   			margin-right:auto;">
-
-<div class="img" style=" float:left; width: 50%; height: 100%;">
-<img src="/img/no_image.png" style="width: 80%; height: 90%; margin-left: 10%;margin-right: 10%;" >
-</div>
+		<img src="/img/no_image.png" style="margin:10px;width: 80%; height: 90%; margin-left: 10%;margin-right: 10%;" >
+	</div>
 
 	<div class="inform" style=" float:right;50%;height:300px; background:#FFFFFF; margin-right: 100px;padding-top:15px;margin-top:15px; font-family: PureunJeonnam; ">
 
 	<table class="type05" width="450px" >
-	<tr><td><strong>Title</strong></td><td>{{book.0.bookTitle}}</td></tr>
-	<tr><td><strong>Writer</strong></td><td>{{book.0.bookWriter}}</td></tr>
-	<tr><td><strong>Publisher</strong></td><td>{{book.0.bookPublisher}}</td></tr>
-	<tr><td><strong>bookDate</strong></td><td>{{book.0.bookDate}}</td></tr>
+	<tr><td><strong>Title</strong></td><td>{{book.bookTitle}}</td></tr>
+	<tr><td><strong>Writer</strong></td><td>{{book.bookWriter}}</td></tr>
+	<tr><td><strong>Publisher</strong></td><td>{{book.bookPublisher}}</td></tr>
+	<tr><td><strong>bookDate</strong></td><td>{{book.bookDate}}</td></tr>
 	</table>
-	
 	<br/>
 
-
-	<input type="button" class="btn btn-success btn-lg" style="font-family: PureunJeonnam;" value="RENT" />&nbsp;&nbsp;&nbsp;
-	
-	<input type="button" class="btn btn-warning btn-lg" style="font-family: PureunJeonnam;" value="WISH" />
+		<div style="width: 100%; float: left;">
+			<input type="button" class="btn btn-success btn-lg" style="font-family: PureunJeonnam;float: left; width: 40%;" value="RENT" />&nbsp;&nbsp;&nbsp;
+		
+		<div ng-if="wishNo==null" style="float: left; margin-left: 10%;">     	
+			<div class="wish">
+				<img id="wish" src="/img/buttonOff.png" width="40" height="40" ng-click="wishIn(book.bookId,'${sessionScope.UserId}')"/>
+			</div>
+		</div>
+			
+		<div ng-if="wishNo!=null" style="float: left;margin-left: 10%;">
+				<div class="wish">
+					<img id="wish" src="/img/buttonOn.png" width="40" height="40" ng-click="wishOut(book.bookId,'${sessionScope.UserId}')"/>
+				</div>
+		</div>
+	</div>
 
 	</div>
 </div>
@@ -165,7 +171,7 @@ table.type07 td {
 				  </tr>
 				</thead>
 			    	
-				<tr ng-repeat="comment in commentList.1.content">
+				<tr ng-repeat="comment in commentList.content">
 				   	<th scope="row">{{comment.commentId}}</th>
 				   	<td>{{comment.commentContent}}</td>
 				   	<td>{{comment.commentRate }}</td>
@@ -179,6 +185,7 @@ table.type07 td {
 				</tr>
 		   	</table>
 	   	</div>
+
    	</div>
 </div>
 
