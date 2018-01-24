@@ -1,21 +1,29 @@
 package com.booker.server.controller;
 
 import com.booker.server.model.MemberModel;
-import com.booker.server.services.impl.MemberServiceImpl;
+import com.booker.server.model.Rental;
+import com.booker.server.services.MemberService;
+import com.booker.server.services.RentalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 import java.util.Map;
 
 @Controller
 public class TB_MemberController {
 
 	@Autowired
-	MemberServiceImpl memberService;
+	MemberService memberService;
+	@Autowired
+	private RentalService rentalService;
 
 
 	@RequestMapping(value="/login", method = RequestMethod.POST)
@@ -86,6 +94,21 @@ public class TB_MemberController {
 		return "rentalList";
 	}
 
+	@RequestMapping(value="/rentBook")
+	@ResponseBody
+	public String rentBook(Integer bookId, HttpSession session) {
+		final MemberModel member = memberService.findOneByUsername((String) session.getAttribute("UserId"));
+		rentalService.rentBook(bookId, member);
+		return "{\"message\":\"sucess\"}";
+	}
+
+	@RequestMapping(value = "/currentUser/rentalList")
+	@ResponseBody
+	public List<Rental> currentUserRentalList(HttpSession session){
+		final MemberModel member = memberService.findOneByUsername((String) session.getAttribute("UserId"));
+		return rentalService.findAllByMemberId(member.getId());
+	}
+
 	@RequestMapping(value="/wish")
 	public String wish(Model model) {
 		System.out.println("위시 실행");
@@ -93,14 +116,6 @@ public class TB_MemberController {
 		return "wishList";
 	}
 
-	@RequestMapping(value="/rentBook")
-	@ResponseBody
-	public String rentBook(Integer bookId, HttpSession session) {
-		final MemberModel member = memberService.findOneByUsername((String) session.getAttribute("UserId"));
-		memberService.rentBook(bookId, member);
-		return "{\"message\":\"sucess\"}";
-	}
-	
 	@GetMapping("/currentUserProfile")
     @ResponseBody
 	public Map<String, Object> currentUser (HttpSession session){

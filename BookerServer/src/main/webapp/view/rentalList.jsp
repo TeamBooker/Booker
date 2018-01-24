@@ -14,26 +14,24 @@
 </head>
 <body>
 	<div class="container">
-		<table class="table table-hover">
+		<table class="table table-hover" ng-init="rental.load()">
 			<thead>
 				<tr>
 					<th>Book</th>
 					<th>Rental Date</th>
-					<th>State</th>
-					<th>library</th>
+					<th>Library</th>
 				</tr>
 			</thead>
 			<tbody ng-repeat="rental in rental.list">
 				<tr>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
+					<td>{{rental.bookId}}</td>
+					<td>{{rental.regDate}}</td>
+					<td>-</td>
 				</tr>
 			</tbody>
 			<tbody ng-hide="rental.list.length">
 				<tr>
-					<td colspan="4"><center>No results were found for your search.</center></td>
+					<td colspan="3"><center>No results were found for your search.</center></td>
 				</tr>
 			</tbody>
 		</table>

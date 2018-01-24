@@ -20,28 +20,32 @@ function MyProfileController($scope, $http){
 
 	/* reservation */
 	_.merge(($scope.reservation = {}), {
-		list : {},
+		list : [],
 		load : function(){
 
 		}
 	});
 	/* read */
 	_.merge(($scope.read = {}), {
-		list : {},
+		list : [],
 		load : function(){
 
 		}
 	});
 	/* rental */
 	_.merge(($scope.rental = {}), {
-		list : {},
+		list : [],
 		load : function(){
-
+			console.log("load");
+			$http.get('/currentUser/rentalList').success(function(data){
+				$scope.rental.list = data;
+				console.log("done", data);
+			}).error(console.error);
 		}
 	});
 	/* wish */
 	_.merge(($scope.wish = {}), {
-		list : {},
+		list : [],
 		load : function(){
 
 		}
