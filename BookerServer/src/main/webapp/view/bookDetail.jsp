@@ -1,17 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html ng-app>
+<!DOCTYPE html>
+<html>
 <head>
 <title>Insert title here</title>
 <script type="text/javascript">
-$( document ).ready(function() {
+var rate=0;
+
+/*별점*/
+$(document).ready(function() {
 
 	$( ".star_rating a" ).click(function() {
 	    $(this).parent().children("a").removeClass("on");
 	    $(this).addClass("on").prevAll("a").addClass("on");
-	    
+	   
 	    rate = $(this).attr("id");
-
+		document.getElementById("rate").value=rate;
 	    return false;
 	});
 });
@@ -96,7 +99,7 @@ table.type07 td {
 </style>
 </head>
 <body>
-
+<div data-ng-init="bookDetail()"></div>
 
 <div id="wrap" style="height:500px; width:100%; margin-left:auto;
    			margin-right:auto;">
@@ -108,10 +111,10 @@ table.type07 td {
 	<div class="inform" style=" float:right;50%;height:300px; background:#FFFFFF; margin-right: 100px;padding-top:15px;margin-top:15px; font-family: PureunJeonnam; ">
 
 	<table class="type05" width="450px" >
-	<tr><td><strong>Title</strong></td><td>${book.bookTitle}</td></tr>
-	<tr><td><strong>Writer</strong></td><td>${book.bookWriter}</td></tr>
-	<tr><td><strong>Publisher</strong></td><td>${book.bookPublisher}</td></tr>
-	<tr><td><strong>bookDate</strong></td><td>${book.bookDate}</td></tr>
+	<tr><td><strong>Title</strong></td><td>{{book.0.bookTitle}}</td></tr>
+	<tr><td><strong>Writer</strong></td><td>{{book.0.bookWriter}}</td></tr>
+	<tr><td><strong>Publisher</strong></td><td>{{book.0.bookPublisher}}</td></tr>
+	<tr><td><strong>bookDate</strong></td><td>{{book.0.bookDate}}</td></tr>
 	</table>
 	
 	<br/>
@@ -123,7 +126,7 @@ table.type07 td {
 
 	</div>
 </div>
-<center>
+<div class="container-fluid">
 <div ng-if="${empty sessionScope.UserId }">
 	<div style="text-align: center;background-color: #F6F6F6; width: 100%;">
 		후기를 작성하기 위해선 로그인이 필요합니다.
@@ -131,8 +134,9 @@ table.type07 td {
 </div>
 <div ng-if="${not empty sessionScope.UserId }">
 
-	<div id="comment" class="comment" style="background:#F6F6F6;width:100%;margin-left:auto;font-family: PureunJeonnam; margin-right:auto;padding-top: 20px;">
-	   			<strong>Please rate the book.</strong>
+	<div id="comment" class="comment" style="background:#F6F6F6;width:100%;padding-left:20%; padding-right:20%; PureunJeonnam; padding-right:auto;padding-top: 20px;">
+ 		<div style="padding-left: 40%; padding-right: 40%;">
+ 		<strong>Please rate the book.</strong>
 		<p class="star_rating" id="star_rating">
 		    <a href="#" id="1">★</a>
 		    <a href="#" id="2">★</a>
@@ -140,14 +144,44 @@ table.type07 td {
 		    <a href="#" id="4">★</a>
 		    <a href="#" id="5">★</a>
 		</p>
+		</div>
+		<textarea rows="4" cols="90" id="commentContents" name="commentContents" value=""  ></textarea>
+		<input type="hidden" id="rate" value="0"/>
+		<input type="button" class="btn btn-default" id="button1" ng-click="comment()" value="Write" style="height:60pt;width:60pt;margin-bottom: 70px;font-family: PureunJeonnam;"  />
 
-		<textarea rows="4" cols="100" id="commentContents" name="commentContents" value=""  ></textarea>
-		<input type="button" class="btn btn-default" id="button1" ng-click="comment(${bookId})" value="Write" style="height:60pt;width:60pt;margin-bottom: 70px;font-family: PureunJeonnam;"  />
-	
 	</div>
 </div>
-<div id="commentList" style="margin-left:auto; margin-right:auto;"><jsp:include page="comment.jsp"></jsp:include></div>
-</center>
+<div id="commentList" style="margin-left:auto; margin-right:auto;">
+	<div ng-if="book.1.content==0"><h4><center>No reviews have been written.</center></h4></div>
+	<div ng-if="book.1.content!=0">
+		<div style="font-family: PureunJeonnam;">
+			<table class="type07" style="font-family: PureunJeonnam; width : 100%;">  
+				<thead> 
+				  <tr>
+				      <th scope="cols">작성자</th>
+				      <th scope="cols">내용</th>
+				      <th scope="cols">평점</th>
+				      <th scope="cols">작성일</th>
+				  </tr>
+				</thead>
+			    	
+				<tr ng-repeat="comment in commentList.1.content">
+				   	<th scope="row">{{comment.commentId}}</th>
+				   	<td>{{comment.commentContent}}</td>
+				   	<td>{{comment.commentRate }}</td>
+				   	<td>{{comment.commentRegdate}}
+				   	
+				    <div style="float: right; margin-right:10%; " ng-if="'${sessionScope.UserId}'==comment.commentId">
+				   	<span class="glyphicon glyphicon-remove" aria-hidden="true"  ng-click="dropComment(comment.commentNo,book.0.bookId)" ></span>
+				   </div>
+				   </td>
+				   
+				</tr>
+		   	</table>
+	   	</div>
+   	</div>
+</div>
 
+</div>
 </body>
 </html>

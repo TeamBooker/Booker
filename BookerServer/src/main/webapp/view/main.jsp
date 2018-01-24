@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html ng-app="booker">
 <head>
 	<jsp:include page="commonHead.jsp"/>
 	<style type="text/css">
@@ -33,13 +33,15 @@
 	<script type="text/javascript" src="js/TopController.js"></script>
 	<script type="text/javascript" src="js/app.js"></script>
 </head>
-<body ng-app="booker">
+<body>
 	<div class=container-fluid style="height:100%; padding-left: 0px;padding-right: 0px;">
 		<div ng-controller="TopController" class="top" id="top" style="float: right;">
 			<jsp:include page="top.jsp"></jsp:include>
 		</div>
-		<div class="middle" style="clear: right;" id="middle" ng-view>
+		
+		<div ng-view class="middle" style="clear: right;" id="middle" >
 		</div>
+		
 		<div class="bottom">
 			<table style="width: 100%; height: 100%; padding: 0;">
 				<tr>

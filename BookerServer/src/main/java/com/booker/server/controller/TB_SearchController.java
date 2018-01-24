@@ -18,10 +18,14 @@ public class TB_SearchController {
 	@Autowired
 	SearchService searchservice;
 	
-	@RequestMapping("/search")
-    public String search(String keyword,Model model,Pageable pageable) {
+	@RequestMapping(value="/search", method=RequestMethod.GET)
+	public void search() {}
+	
+	@RequestMapping("/search_list")
+	@ResponseBody
+    public Page<Book> search_list(String keyword,Model model,Pageable pageable) {
     	Page<Book> searchList;
-    	
+
     	if(keyword==null || keyword.equals("")) {
     		System.out.println("not search");
     		searchList =searchservice.findAll(pageable);
@@ -31,13 +35,7 @@ public class TB_SearchController {
     		 System.out.println(searchList.getSize());
     	}
     	
-    	boolean pageFirst=searchList.isFirst();
-    	boolean pageLast=searchList.isLast();
-    	model.addAttribute("bookLists",searchList);
-    	model.addAttribute("pageFirst",pageFirst);
-    	model.addAttribute("pageLast",pageLast);
-    	
-    	return "search";
+    	return searchList;
     }
 	
 	@RequestMapping(value="/pageBook",method=RequestMethod.GET)
