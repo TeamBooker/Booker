@@ -1,5 +1,6 @@
 package com.booker.server.services.impl;
 
+import com.booker.server.model.Book;
 import com.booker.server.model.MemberModel;
 import com.booker.server.model.Rental;
 import com.booker.server.repository.RentalRepository;
@@ -31,6 +32,11 @@ public class RentalServiceImpl implements RentalService {
     @Override
     public List<Rental> findAllByMemberId(Integer memberId) {
         return rentalRepository.findAllByMemberId(memberId);
+    }
+
+    @Override
+    public Rental findByBookAndMember(Book book, MemberModel member) {
+        return rentalRepository.findByBookIdAndMemberId(book.getBookId(), member.getId());
     }
 
 }

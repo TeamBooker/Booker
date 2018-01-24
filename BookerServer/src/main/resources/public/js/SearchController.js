@@ -3,7 +3,7 @@ function SearchController($scope, $http, $compile,$routeParams){
 	var bookId = $routeParams.bookId;
 	var word = $scope.keyword;
 	var keywords=$routeParams.keywords;
-	
+	$scope.rental = {}; // 처음에 렌탈 여부를 못 가지고 왔을때 있는것처럼취급(렌탈 버튼 비활성화)하기위한 모델
 	
 	/* 검색 */
 
@@ -45,6 +45,7 @@ function SearchController($scope, $http, $compile,$routeParams){
 			console.log(data);
 			$scope.book=data;
 			$scope.commentList=data;
+			$scope.rental = data[2];
 		})
 		.error(console.error);
 	};

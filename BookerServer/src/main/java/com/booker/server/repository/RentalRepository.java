@@ -11,4 +11,5 @@ import java.util.List;
  */
 public interface RentalRepository extends CrudRepository<Rental, RentalId>{
     List<Rental> findAllByMemberId(Integer memberId);
+    Rental findByBookIdAndMemberId(Integer bookId, Integer memberId);
 }

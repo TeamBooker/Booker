@@ -1,5 +1,6 @@
 package com.booker.server.services;
 
+import com.booker.server.model.Book;
 import com.booker.server.model.MemberModel;
 import com.booker.server.model.Rental;
 
@@ -13,4 +14,5 @@ public interface RentalService {
 
     List<Rental> findAllByMemberId(Integer memberId);
 
+    Rental findByBookAndMember(Book book, MemberModel member);
 }

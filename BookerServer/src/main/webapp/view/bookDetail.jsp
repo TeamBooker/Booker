@@ -114,7 +114,8 @@
 			<tr><td><strong>bookDate</strong></td><td>{{book.0.bookDate}}</td></tr>
 		</table>
 		<br/>
-		<input type="button" ng-click="rent(book.0.bookId)" class="btn btn-success btn-lg fontedBtn" value="RENT" />
+		<input type="button" ng-hide="rental" ng-click="rent(book.0.bookId)" class="btn btn-success btn-lg fontedBtn" value="RENT" />
+		<input type="button" ng-show="rental" class="btn btn-success disabled btn-lg fontedBtn" value="RENT" />
 		<input type="button" ng-click="wish(book.0.bookId)" class="btn btn-warning btn-lg fontedBtn" value="WISH" />
 	</div>
 </div>
