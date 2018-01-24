@@ -39,4 +39,9 @@ public class RentalServiceImpl implements RentalService {
         return rentalRepository.findByBookIdAndMemberId(book.getBookId(), member.getId());
     }
 
+    @Override
+    public Rental findTopByBook(Book book) {
+        return rentalRepository.findTopByBookId(book.getBookId());
+    }
+
 }

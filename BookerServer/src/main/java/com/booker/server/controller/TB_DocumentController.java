@@ -44,7 +44,15 @@ public class TB_DocumentController {
 		String currentUsername;
 		Rental rental = null;
 		if ((currentUsername = (String) session.getAttribute("UserId")) != null){
+			// 내가 빌린경우 확인
 			rental = rentalService.findByBookAndMember(book, memberService.findOneByUsername(currentUsername));
+
+			//다른사람이 빌린경우 확인
+			if (rental == null) {
+				rental = rentalService.findTopByBook(book);
+				if (rental != null)
+					rental.setMemberId(-1); // 다른사람이 렌트한경우가 있을수있어 마스크(로그인된 사람 이외의 다른사람 정보를 주지 않기 위한 보안조치)
+			}
 		}
 		ListVector list = new ListVector(3);
 		list.add(book);

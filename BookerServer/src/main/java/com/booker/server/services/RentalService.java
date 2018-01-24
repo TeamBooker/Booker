@@ -15,4 +15,6 @@ public interface RentalService {
     List<Rental> findAllByMemberId(Integer memberId);
 
     Rental findByBookAndMember(Book book, MemberModel member);
+
+    Rental findTopByBook(Book book);
 }
