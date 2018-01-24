@@ -11,5 +11,6 @@ import java.util.List;
 public interface RentalService {
     void rentBook(Integer bookId, MemberModel member);
 
-    List<Rental> findAllByMemberId(Integer id);
+    List<Rental> findAllByMemberId(Integer memberId);
+
 }

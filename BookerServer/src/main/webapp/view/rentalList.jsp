@@ -24,8 +24,8 @@
 			</thead>
 			<tbody ng-repeat="rental in rental.list">
 				<tr>
-					<td>{{rental.bookId}}</td>
-					<td>{{rental.regDate}}</td>
+					<td>{{rental.book.bookTitle}}</td>
+					<td>{{rental.regDate | date:'yyyy-MM-dd HH:mm:ss'}}</td>
 					<td>-</td>
 				</tr>
 			</tbody>

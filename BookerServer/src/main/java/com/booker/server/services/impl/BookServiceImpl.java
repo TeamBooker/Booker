@@ -21,5 +21,10 @@ public class BookServiceImpl implements BookService{
         return bookRepository.findAll(pageable);
     }
 
-	
+    @Override
+    public Book findOneByBookId(Integer bookId) {
+        return bookRepository.findOneByBookId(bookId);
+    }
+
+
 }

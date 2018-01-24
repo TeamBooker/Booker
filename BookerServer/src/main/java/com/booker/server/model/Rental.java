@@ -17,6 +17,7 @@ import java.util.Date;
 @IdClass(RentalId.class)
 @Data
 public class Rental implements Serializable {
+
     @Id
     Integer memberId;
     @Id

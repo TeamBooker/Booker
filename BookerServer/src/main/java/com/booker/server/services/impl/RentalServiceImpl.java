@@ -14,7 +14,8 @@ import java.util.List;
  * Created by Cheechyo on 2018. 1. 24..
  */
 @Service
-public class RentalServiceImpl implements RentalService{
+public class RentalServiceImpl implements RentalService {
+
     @Autowired
     private RentalRepository rentalRepository;
 
