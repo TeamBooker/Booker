@@ -18,8 +18,8 @@
 			<div class="panel panel-default">
 				<div class="panel-body">
 					<div class="box box-primary">
-						<div class="box-body box-profile">
-							<img class="profile-user-img img-responsive img-circle" src="https://dummyimage.com/128/128/fff&text=~" ng-src="https://dummyimage.com/128/128/fff&text={{user.nameTag}}" alt="User profile picture"/>
+						<div class="box-body box-profile ">
+							<img class="profile-user-img img-responsive img-circle center-block" src="https://dummyimage.com/128x128/737df0/fff&text=~" ng-src="https://dummyimage.com/128x128/737df0/fff&text={{user.nameTag}}" alt="User profile picture"/>
 							<h3 class="profile-username text-center">{{user.name}}</h3>
 							<p class="text-muted text-center">-</p>
 							<table class="table">
