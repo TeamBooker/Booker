@@ -33,7 +33,15 @@ function TopController($scope, $http, $compile){
 				window.location = "/main";
 			}).error(console.error); 
 		}
-	})
+	});
+
+	/* 네비게이터 메뉴 관련 메소드 및 필드 */
+	$scope.navigetionList = [
+		{ title: 'Reservation book', ico : '/img/Cart.ico', href : 'reservation'},
+		{ title: 'Reading book', ico : '/img/Check.ico', href : 'read'},
+		{ title: 'Rental book', ico : '/img/Contacts.ico', href : 'rental'},
+		{ title: 'My study', ico : '/img/Heart.ico', href : 'wish'}
+	];
 
 	/*다음페이지*/
 	$scope.Page = function(pageNumber){
