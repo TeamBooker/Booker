@@ -7,6 +7,9 @@
 		.middle{
 			height: auto;
 		}
+		.grid-960{
+			max-width: 960px;
+		}
 		.star_rating {font-size:0; letter-spacing:-4px;}
 		.star_rating a {
 			font-size:22px;
@@ -18,27 +21,11 @@
 		}
 		.star_rating a:first-child {margin-left:0;}
 		.star_rating a.on {color:#777;}
-		table.type05 {
-			border-collapse: separate;
-			border-spacing: 1px;
-			text-align: left;
-			line-height: 1.5;
-			border-top: 1px solid #ccc;
-			margin: 20px 10px;
+		.thumbnail-book{
+			padding: 20px;
 		}
-		table.type05 th {
-			width: 150px;
-			padding: 10px;
-			font-weight: bold;
-			vertical-align: top;
-			border-bottom: 1px solid #ccc;
-			background: #efefef;
-		}
-		table.type05 td {
-			width: 350px;
-			padding: 10px;
-			vertical-align: top;
-			border-bottom: 1px solid #ccc;
+		#bookInfo {
+			margin-top: 50px;
 		}
 		table.type07 {
 			border-collapse: collapse;
@@ -72,6 +59,13 @@
 			vertical-align: top;
 			border-bottom: 1px solid #ccc;
 		}
+		.clearbtn {
+			border: 0px;
+			background: transparent;
+		}
+		.fonted {
+			font-family: PureunJeonnam;
+		}
 </style>
 <script type="text/javascript">
 	var rate=0;
@@ -88,72 +82,92 @@
 </script>
 </head>
 <body>
-	<div data-ng-init="bookDetail()"></div>
-	<div id="wrap" style="height:500px; width:500px; margin-left:auto;margin-right:auto;">
-		<img src="/img/no_image.png" style="margin:10px;width: 80%; height: 90%; margin-left: 10%;margin-right: 10%;" >
-	</div>
-	<div class="inform" style="float:right; background:#FFFFFF; margin-right: 100px;padding-top:15px;margin-top:15px; font-family: PureunJeonnam; ">
-		<table class="type05" width="450px" >
-			<tr><td><strong>Title</strong></td><td>{{book.bookTitle}}</td></tr>
-			<tr><td><strong>Writer</strong></td><td>{{book.bookWriter}}</td></tr>
-			<tr><td><strong>Publisher</strong></td><td>{{book.bookPublisher}}</td></tr>
-			<tr><td><strong>bookDate</strong></td><td>{{book.bookDate}}</td></tr>
-		</table>
-		<br/>
-		<input type="button" ng-hide="rental" ng-click="rent(book.bookId)" class="btn btn-success btn-lg fontedBtn" value="RENT" />
-		<input type="button" ng-show="rental.memberId" class="btn btn-success disabled btn-lg fontedBtn" value="RENTED" />
-		<input type="button" ng-show="rental && !rental.memberId && !reservation" ng-click="makeReservation(book.bookId)" class="btn btn-success btn-lg fontedBtn" value="RESERVATION" />
-		<input type="button" ng-show="rental && reservation" class="btn btn-success disabled btn-lg fontedBtn" value="RESERVATIONED" />
-		<button class="btn"><img id="wish" ng-if="wishNo==null" src="/img/buttonOff.png" width="40" height="40" ng-click="wishIn(book.bookId,'${sessionScope.UserId}')"/></button>
-		<button class="btn"><img id="wish" ng-if="wishNo!=null" src="/img/buttonOn.png" width="40" height="40" ng-click="wishOut(book.bookId,'${sessionScope.UserId}')"/></button>
-	</div>
-	<div class="container-fluid">
-		<div ng-if="${empty sessionScope.UserId}">
-			<div style="text-align: center;background-color: #F6F6F6; width: 100%;">
-				후기를 작성하기 위해선 로그인이 필요합니다.
+	<div class="container-fluid grid-960 center-block">
+		<div class="row" data-ng-init="bookDetail()">
+			<div class="col-md-8 text-center well well-sm thumbnail-book">
+				<img src="/img/no_image.png" class="img-responsive img-thumbnail" >
 			</div>
-		</div>
-		<div ng-if="${not empty sessionScope.UserId }">
-			<div id="comment" class="comment" style="background:#F6F6F6;width:100%;padding-left:20%; padding-right:20%; PureunJeonnam; padding-right:auto;padding-top: 20px;">
-				<div style="padding-left: 40%; padding-right: 40%;">
-					<strong>Please rate the book.</strong>
-					<p class="star_rating" id="star_rating">
-						<a href="#" id="1">★</a>
-						<a href="#" id="2">★</a>
-						<a href="#" id="3">★</a>
-						<a href="#" id="4">★</a>
-						<a href="#" id="5">★</a>
-					</p>
+			<div class="col-md-4">
+				<div id="bookInfo">
+					<div class="panel panel-default">
+						<div class="panel-heading">책 정보</div>
+						<table class="table table-bodered">
+							<tr><td><h4><strong>Title</strong></h4></td><td><h4>{{book.bookTitle}}</h4></td></tr>
+							<tr><td><h5><strong>Writer</strong></h5></td><td><h5>{{book.bookWriter}}</h5></td></tr>
+							<tr><td><h5><strong>Publisher</strong></h5></td><td><h5>{{book.bookPublisher}}</h5></td></tr>
+							<tr><td><h5><strong>bookDate</strong></h5></td><td><h5>{{book.bookDate}}</h5></td></tr>
+						</table>
+						<br/>
+						<div class="panel-footer">
+							<input type="button" ng-hide="rental" ng-click="rent(book.bookId)" class="btn btn-success btn-lg fonted" value="RENT" />
+							<input type="button" ng-show="rental.memberId" class="btn btn-success disabled btn-lg fonted" value="RENTED" />
+							<input type="button" ng-show="rental && !rental.memberId && !reservation" ng-click="makeReservation(book.bookId)" class="btn btn-success btn-lg fonted" value="RESERVATION" />
+							<input type="button" ng-show="rental && reservation" class="btn btn-success disabled btn-lg fonted" value="RESERVATIONED" />
+							<button type="button" ng-show="wishNo==null" class="clearbtn fonted"><img id="wish" src="/img/buttonOff.png" width="40" height="40" ng-click="wishIn(book.bookId,'${sessionScope.UserId}')"/></button>
+							<button type="button" ng-show="wishNo!=null" class="clearbtn fonted"><img id="wish" src="/img/buttonOn.png" width="40" height="40" ng-click="wishOut(book.bookId,'${sessionScope.UserId}')"/></button>
+						</div>
+					</div>
 				</div>
-				<textarea rows="4" cols="90" id="commentContents" name="commentContents" value=""  ></textarea>
-				<input type="hidden" id="rate" value="0"/>
-				<input type="button" class="btn btn-default" id="button1" ng-click="comment()" value="Write" style="height:60pt;width:60pt;margin-bottom: 70px;font-family: PureunJeonnam;"  />
 			</div>
 		</div>
-		<div id="commentList" style="margin-left:auto; margin-right:auto;">
-			<div ng-if="commentList.content.length == 0"><h4><center>No reviews have been written.</center></h4></div>
-			<div ng-if="commentList.content">
-				<div style="font-family: PureunJeonnam;">
-					<table class="type07" style="font-family: PureunJeonnam; width : 100%;">  
-						<thead> 
+		<div class="row">
+			<div ng-if="${empty sessionScope.UserId}">
+				<div style="text-align: center;background-color: #F6F6F6; width: 100%;">
+					후기를 작성하기 위해선 로그인이 필요합니다.
+				</div>
+			</div>
+			<div ng-if="${not empty sessionScope.UserId }">
+				<form id="comment" class="comment from-inline panel panel-default" style="background:#F6F6F6;">
+					<div class="panel-body">
+						<table width="100%">
 							<tr>
-								<th scope="cols">작성자</th>
-								<th scope="cols">내용</th>
-								<th scope="cols">평점</th>
-								<th scope="cols">작성일</th>
+								<td>
+									<textarea rows="4" cols="90" id="commentContents" name="commentContents" value="" class="col-md-12 form-control"></textarea>
+								</td>
+								<td width="100px" style="height:100%;">
+									<input type="button" class="btn btn-primary btn-lg fonted" id="button1" ng-click="comment()" value="Write" style="height:100%; margin: 15px;" />
+								</td>
 							</tr>
-						</thead>
-						<tr ng-repeat="comment in commentList.content">
-							<th scope="row">{{comment.commentId}}</th>
-							<td>{{comment.commentContent}}</td>
-							<td>{{comment.commentRate }}</td>
-							<td>{{comment.commentRegdate}}
-								<div style="float: right; margin-right:10%; " ng-if="'${sessionScope.UserId}'==comment.commentId">
-									<span class="glyphicon glyphicon-remove" aria-hidden="true"  ng-click="dropComment(comment.commentNo,book.bookId)" ></span>
-								</div>
-							</td>
-						</tr>
-					</table>
+						</table>
+					</div>
+					<div class="panel-footer form-group">
+						<strong>Please rate the book.</strong>
+						<span class="star_rating" id="star_rating">
+							<a href="#" id="1">★</a>
+							<a href="#" id="2">★</a>
+							<a href="#" id="3">★</a>
+							<a href="#" id="4">★</a>
+							<a href="#" id="5">★</a>
+						</span>
+						<input type="hidden" id="rate" value="0"/>
+					</div>
+				</form >
+			</div>
+			<div id="commentList" style="margin-left:auto; margin-right:auto;">
+				<div ng-if="commentList.content.length == 0"><h4><center>No reviews have been written.</center></h4></div>
+				<div ng-if="commentList.content">
+					<div style="font-family: PureunJeonnam;">
+						<table class="type07" style="font-family: PureunJeonnam; width : 100%;">  
+							<thead> 
+								<tr>
+									<th scope="cols">작성자</th>
+									<th scope="cols">내용</th>
+									<th scope="cols">평점</th>
+									<th scope="cols">작성일</th>
+								</tr>
+							</thead>
+							<tr ng-repeat="comment in commentList.content">
+								<th scope="row">{{comment.commentId}}</th>
+								<td>{{comment.commentContent}}</td>
+								<td>{{comment.commentRate }}</td>
+								<td>{{comment.commentRegdate}}
+									<div style="float: right; margin-right:10%; " ng-if="'${sessionScope.UserId}'==comment.commentId">
+										<span class="glyphicon glyphicon-remove" aria-hidden="true"  ng-click="dropComment(comment.commentNo,book.bookId)" ></span>
+									</div>
+								</td>
+							</tr>
+						</table>
+					</div>
 				</div>
 			</div>
 		</div>

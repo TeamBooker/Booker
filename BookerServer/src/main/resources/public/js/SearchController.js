@@ -52,7 +52,7 @@ function SearchController($scope, $http, $compile,$routeParams){
 			params : {bookId : bookId},
 		}).success(function(data, status, headers, config){
 			if (data.message = 'SUCCESS'){
-				$scope.rental = {} // 추가 정보가 없어도 문제가 없어보임
+				$scope.rental = {memberId:true} // 추가 정보가 없어도 문제가 없어보임
 				alert('대여되었습니다.')
 			} else {
 				alert('대여에 실패하였습니다.')
