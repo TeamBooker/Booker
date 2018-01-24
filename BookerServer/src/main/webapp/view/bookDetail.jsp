@@ -108,19 +108,23 @@
 	</div>
 	<div class="inform" style=" float:right;50%;height:300px; background:#FFFFFF; margin-right: 100px;padding-top:15px;margin-top:15px; font-family: PureunJeonnam; ">
 		<table class="type05" width="450px" >
-			<tr><td><strong>Title</strong></td><td>{{book.0.bookTitle}}</td></tr>
-			<tr><td><strong>Writer</strong></td><td>{{book.0.bookWriter}}</td></tr>
-			<tr><td><strong>Publisher</strong></td><td>{{book.0.bookPublisher}}</td></tr>
-			<tr><td><strong>bookDate</strong></td><td>{{book.0.bookDate}}</td></tr>
+			<tr><td><strong>Title</strong></td><td>{{book.bookTitle}}</td></tr>
+			<tr><td><strong>Writer</strong></td><td>{{book.bookWriter}}</td></tr>
+			<tr><td><strong>Publisher</strong></td><td>{{book.bookPublisher}}</td></tr>
+			<tr><td><strong>bookDate</strong></td><td>{{book.bookDate}}</td></tr>
 		</table>
 		<br/>
-		<input type="button" ng-hide="rental" ng-click="rent(book.0.bookId)" class="btn btn-success btn-lg fontedBtn" value="RENT" />
-		<input type="button" ng-show="rental" class="btn btn-success disabled btn-lg fontedBtn" value="RENTED" />
-		<input type="button" ng-click="wish(book.0.bookId)" class="btn btn-warning btn-lg fontedBtn" value="WISH" />
+		<span>
+		</span>
+		<input type="button" ng-hide="rental" ng-click="rent(book.bookId)" class="btn btn-success btn-lg fontedBtn" value="RENT" />
+		<input type="button" ng-show="rental.memberId" class="btn btn-success disabled btn-lg fontedBtn" value="RENTED" />
+		<input type="button" ng-show="rental && !rental.memberId && !reservation" ng-click="makeReservation(book.bookId)" class="btn btn-success btn-lg fontedBtn" value="RESERVATION" />
+		<input type="button" ng-show="rental && reservation" class="btn btn-success disabled btn-lg fontedBtn" value="RESERVATIONED" />
+		<input type="button" ng-click="wish(book.bookId)" class="btn btn-warning btn-lg fontedBtn" value="WISH" />
 	</div>
 </div>
 <div class="container-fluid">
-	<div ng-if="${empty sessionScope.UserId }">
+	<div ng-if="${empty sessionScope.UserId}">
 		<div style="text-align: center;background-color: #F6F6F6; width: 100%;">
 			후기를 작성하기 위해선 로그인이 필요합니다.
 		</div>
@@ -144,8 +148,8 @@
 		</div>
 	</div>
 	<div id="commentList" style="margin-left:auto; margin-right:auto;">
-		<div ng-if="book.1.content==0"><h4><center>No reviews have been written.</center></h4></div>
-		<div ng-if="book.1.content!=0">
+		<div ng-if="commentList.content.length == 0"><h4><center>No reviews have been written.</center></h4></div>
+		<div ng-if="commentList.content">
 			<div style="font-family: PureunJeonnam;">
 				<table class="type07" style="font-family: PureunJeonnam; width : 100%;">  
 					<thead> 
@@ -157,13 +161,13 @@
 						</tr>
 					</thead>
 
-					<tr ng-repeat="comment in commentList.1.content">
+					<tr ng-repeat="comment in commentList.content">
 						<th scope="row">{{comment.commentId}}</th>
 						<td>{{comment.commentContent}}</td>
 						<td>{{comment.commentRate }}</td>
 						<td>{{comment.commentRegdate}}
 							<div style="float: right; margin-right:10%; " ng-if="'${sessionScope.UserId}'==comment.commentId">
-								<span class="glyphicon glyphicon-remove" aria-hidden="true"  ng-click="dropComment(comment.commentNo,book.0.bookId)" ></span>
+								<span class="glyphicon glyphicon-remove" aria-hidden="true"  ng-click="dropComment(comment.commentNo,book.bookId)" ></span>
 							</div>
 						</td>
 					</tr>

@@ -4,6 +4,7 @@ import com.booker.server.model.MemberModel;
 import com.booker.server.services.BookService;
 import com.booker.server.services.MemberService;
 import com.booker.server.services.RentalService;
+import com.booker.server.services.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,6 +29,8 @@ public class TB_MemberController {
 	private RentalService rentalService;
 	@Autowired
 	private BookService bookService;
+	@Autowired
+	private ReservationService reservationService;
 
 
 	@RequestMapping(value="/login", method = RequestMethod.POST)
@@ -89,6 +92,26 @@ public class TB_MemberController {
 		System.out.println("예약 실행");
 
 		return "reservationList";
+	}
+
+	@RequestMapping(value = "/reservationBook")
+	@ResponseBody
+	public String reservationBook(Integer bookId, HttpSession session) {
+		final MemberModel member = memberService.findOneByUsername((String) session.getAttribute("UserId"));
+		reservationService.reservationBook(bookId, member);
+		return "{\"message\":\"sucess\"}";
+	}
+
+	@RequestMapping(value = "/currentUser/reservationList")
+	@ResponseBody
+	public List<Map<String,Object>> currentUserReservationList(HttpSession session){
+		final MemberModel member = memberService.findOneByUsername((String) session.getAttribute("UserId"));
+		return reservationService.findAllByMemberId(member.getId()).parallelStream().map(rental -> {
+			return new HashMap<String, Object>(){{
+				this.put("regDate", rental.getRegDate());
+				this.put("book", bookService.findOneByBookId(rental.getBookId()));
+			}};
+		}).collect(Collectors.toList());
 	}
 
 	@RequestMapping(value="/rental")
