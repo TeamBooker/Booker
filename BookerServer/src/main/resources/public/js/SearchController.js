@@ -48,7 +48,20 @@ function SearchController($scope, $http, $compile,$routeParams){
 		})
 		.error(console.error);
 	};
-	
+
+	$scope.rent = function(bookId){
+		$http({
+			method : 'POST',
+			url : '/rentBook',
+			params : {bookId : bookId},
+		}).success(function(data, status, headers, config){
+			if (data.message = 'SUCCESS'){
+				alert('대여되었습니다.')
+			} else {
+				alert('대여에 실패하였습니다.')
+			}
+		}).error(console.error);
+	}
 
 	/*후기 작성*/
 	$scope.comment = function(){
