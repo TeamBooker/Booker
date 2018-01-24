@@ -96,7 +96,7 @@ function SearchController($scope, $http, $compile,$routeParams){
 				return;
 			}
 
-			$scope.commentList=data;
+			$scope.commentList=data[1];
 			console.log(data);
 			$("#commentContents").val("");
 		})
